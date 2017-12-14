@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCRS.Maps", "GCRS.Maps\GCRS.Maps.csproj", "{5295646D-72B0-4CE1-BF30-4AED48E25CAF}"
 EndProject
@@ -9,8 +9,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCRS.Web", "GCRS.Web\GCRS.W
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{544605C5-4ADC-49B9-847B-CAA75E76C691}"
 	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCRS.Data", "GCRS.Data\GCRS.Data.csproj", "{65729C2C-FA01-42AA-B509-7C210294863B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCRS.Business", "GCRS.Business\GCRS.Business.csproj", "{0E6C5A9F-7432-4F9A-A39F-F5B7FA15BB57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCRS.Services", "GCRS.Services\GCRS.Services.csproj", "{917CB698-2B94-4D33-AAF2-4C7BB00F353E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCRS.Domain", "GCRS.Domain\GCRS.Domain.csproj", "{BA5FCFE2-6BC9-4ACA-8D45-C258EEE2B8C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +35,22 @@ Global
 		{B1DAC0E2-AA1B-4E2F-8B4C-6BD74D7853E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1DAC0E2-AA1B-4E2F-8B4C-6BD74D7853E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1DAC0E2-AA1B-4E2F-8B4C-6BD74D7853E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65729C2C-FA01-42AA-B509-7C210294863B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65729C2C-FA01-42AA-B509-7C210294863B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65729C2C-FA01-42AA-B509-7C210294863B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65729C2C-FA01-42AA-B509-7C210294863B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E6C5A9F-7432-4F9A-A39F-F5B7FA15BB57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E6C5A9F-7432-4F9A-A39F-F5B7FA15BB57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E6C5A9F-7432-4F9A-A39F-F5B7FA15BB57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E6C5A9F-7432-4F9A-A39F-F5B7FA15BB57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{917CB698-2B94-4D33-AAF2-4C7BB00F353E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{917CB698-2B94-4D33-AAF2-4C7BB00F353E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{917CB698-2B94-4D33-AAF2-4C7BB00F353E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{917CB698-2B94-4D33-AAF2-4C7BB00F353E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA5FCFE2-6BC9-4ACA-8D45-C258EEE2B8C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA5FCFE2-6BC9-4ACA-8D45-C258EEE2B8C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA5FCFE2-6BC9-4ACA-8D45-C258EEE2B8C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA5FCFE2-6BC9-4ACA-8D45-C258EEE2B8C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
