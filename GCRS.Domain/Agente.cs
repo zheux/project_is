@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GCRS.Domain
 {
-    public class Class1
+    public class Agente:Usuario
     {
+        List<Oferta> Lista_de_ofertas;
     }
 }
