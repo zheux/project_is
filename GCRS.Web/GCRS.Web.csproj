@@ -137,7 +137,6 @@
     <Compile Include="Controllers\RepartosController.cs" />
     <Compile Include="Controllers\ProvinciasController.cs" />
     <Compile Include="Controllers\MunicipiosController.cs" />
-    <Compile Include="Controllers\NomencladorController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\NomencladorViewModel.cs" />
