@@ -130,6 +130,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AdminsController.cs" />
+    <Compile Include="Controllers\AgentesController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
@@ -179,6 +182,9 @@
     <Content Include="Views\Categorias\Index.cshtml" />
     <Content Include="Views\UnidadesTiempoRenta\AddUnidadTiempoRenta.cshtml" />
     <Content Include="Views\UnidadesTiempoRenta\Index.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Admins\Index.cshtml" />
+    <Content Include="Views\Agente\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
