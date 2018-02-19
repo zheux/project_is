@@ -2,6 +2,7 @@
 {
     public class Inmueble
     {
+        public int Id { get; set; }
         public int CantHabitaciones { get; set; }
         public Categoria Categoria { get; set; }
         public Provincia Provincia { get; set; }
