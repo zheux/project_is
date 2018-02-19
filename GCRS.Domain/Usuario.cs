@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace GCRS.Domain
 {
 
-    public class Usuario
+    public abstract class Usuario
     {
         public int Id { get; set; }
         public string Username { get; set; }
