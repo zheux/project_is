@@ -40,6 +40,21 @@ namespace GCRS.Data
         {
             return context.UnidadesTiempoRenta.OrderBy(m => m.Nombre).ToList();
         }
+
+        public static List<Admin> GetAdmins()
+        {
+            return context.Admins.OrderBy(m => m.Username).ToList();
+        }
+        
+        public static List<Cliente> GetClientes()
+        {
+            return context.Clientes.OrderBy(m => m.Username).ToList();
+        }
+
+        public static List<Agente> GetAgentes()
+        {
+            return context.Agentes.OrderBy(m => m.Username).ToList();
+        }
         #endregion
 
         #region ADD
@@ -87,6 +102,33 @@ namespace GCRS.Data
                 context.SaveChanges();
             }
         }
+
+        public static void AddAdmin(Admin p)
+        {
+            if (p != null)
+            {
+                context.Admins.Add(p);
+                context.SaveChanges();
+            }
+        }
+
+        public static void AddClientes(Cliente p)
+        {
+            if (p != null)
+            {
+                context.Clientes.Add(p);
+                context.SaveChanges();
+            }
+        }
+        
+        public static void AddAgentes(Agente p)
+        {
+            if (p != null)
+            {
+                context.Agentes.Add(p);
+                context.SaveChanges();
+            }
+        }
         #endregion
 
         #region DELETE
@@ -131,6 +173,33 @@ namespace GCRS.Data
             if (context.UnidadesTiempoRenta.Find(id) != null)
             {
                 context.UnidadesTiempoRenta.Remove(context.UnidadesTiempoRenta.Find(id));
+                context.SaveChanges();
+            }
+        }
+
+        public static void RemoveAdmin(int id)
+        {
+            if (context.Admins.Find(id) != null)
+            {
+                context.Admins.Remove(context.Admins.Find(id));
+                context.SaveChanges();
+            }
+        }
+
+        public static void RemoveCliente(int id)
+        {
+            if (context.Clientes.Find(id) != null)
+            {
+                context.Clientes.Remove(context.Clientes.Find(id));
+                context.SaveChanges();
+            }
+        }
+
+        public static void RemoveAgente(int id)
+        {
+            if (context.Agentes.Find(id) != null)
+            {
+                context.Agentes.Remove(context.Agentes.Find(id));
                 context.SaveChanges();
             }
         }

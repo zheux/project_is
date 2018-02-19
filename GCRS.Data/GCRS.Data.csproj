@@ -50,6 +50,11 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="DatabaseAPI.cs" />
+    <Compile Include="Migrations\201802191358006_FirstMigration.cs" />
+    <Compile Include="Migrations\201802191358006_FirstMigration.Designer.cs">
+      <DependentUpon>201802191358006_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +68,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201802191358006_FirstMigration.resx">
+      <DependentUpon>201802191358006_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
