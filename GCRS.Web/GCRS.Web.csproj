@@ -184,7 +184,7 @@
     <Content Include="Views\UnidadesTiempoRenta\Index.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Admins\Index.cshtml" />
-    <Content Include="Views\Agente\Index.cshtml" />
+    <Content Include="Views\Agentes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
