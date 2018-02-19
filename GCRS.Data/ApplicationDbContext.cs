@@ -17,6 +17,8 @@ namespace GCRS.Data
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<UnidadTiempoRenta> UnidadesTiempoRenta { get; set; }
 
+        public DbSet<Admin> Admins { get; set; }
+
         public ApplicationDbContext() : base("name=db")
         {
 

@@ -40,6 +40,11 @@ namespace GCRS.Data
         {
             return context.UnidadesTiempoRenta.OrderBy(m => m.Nombre).ToList();
         }
+
+        public static List<Admin> GetAdmins()
+        {
+            return context.Admins.OrderBy(m => m.Username).ToList();
+        }
         #endregion
 
         #region ADD
@@ -84,6 +89,15 @@ namespace GCRS.Data
             if (p != null)
             {
                 context.UnidadesTiempoRenta.Add(p);
+                context.SaveChanges();
+            }
+        }
+
+        public static void AddAdmin(Admin p)
+        {
+            if (p != null)
+            {
+                context.Admins.Add(p);
                 context.SaveChanges();
             }
         }
