@@ -1,0 +1,22 @@
+﻿@if (Request.IsAuthenticated)
+{
+    //Implementar LogOff y Panel de Control
+    @*using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Manage", null, new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+    }*@
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Registrar", "Register", "Account", null, new { @class = "nav-link" })</li>
+        <li>@Html.ActionLink("Iniciar Sesión", "Login", "Account", null, new { @class = "nav-link" })</li>
+    </ul>
+}

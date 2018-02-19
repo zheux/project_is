@@ -185,6 +185,8 @@
     <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Admins\Index.cshtml" />
     <Content Include="Views\Agentes\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
