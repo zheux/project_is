@@ -14,24 +14,22 @@
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <hr />
+                    <br />
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
                         <div class="col-md-3">
-                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @required = "", @autofocus = "", @placeholder = "Nombre" })
+                            @*@Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })*@
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Password, new { @class = "col-md-10 control-label" })
                         <div class="col-md-3">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @required = "", @autofocus = "", @placeholder = "Contraseña" })
+                            @*@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })*@
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Entrar" class="btn btn-default" />
+                            <input type="submit" value="Entrar" class="btn btn-default btn-primary" />
                         </div>
                     </div>
                     <p>
