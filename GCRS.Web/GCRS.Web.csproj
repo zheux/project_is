@@ -185,6 +185,7 @@
     <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Admins\Index.cshtml" />
     <Content Include="Views\Agentes\Index.cshtml" />
+    <Content Include="Views\Clientes\Registro.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

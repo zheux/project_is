@@ -15,5 +15,12 @@ namespace GCRS.Web.Controllers
             return View(AppDatabase.GetClientes());
         }
 
+        // GET: Clientes/Registro
+        public ActionResult Registro()
+        {
+            return View();
+        }
     }
+
+
 }
