@@ -141,6 +141,9 @@
     <Compile Include="Controllers\RepartosController.cs" />
     <Compile Include="Controllers\ProvinciasController.cs" />
     <Compile Include="Controllers\MunicipiosController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
     <Compile Include="Infrastructure\FormAuthenticationProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -151,6 +154,7 @@
     <Content Include="Content\app.css" />
     <Content Include="favicon.ico" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
