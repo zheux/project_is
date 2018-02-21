@@ -11,11 +11,10 @@ namespace GCRS.Web.Infrastructure
     {
         public bool Authenticate(string username, string password, bool remember)
         {
-            //var client = AppDatabase.FindClient(username);
-            //var admin = AppDatabase.FindAdmin(username);
-            //var agent = AppDatabase.FindAgent(username);
-            //bool result = (client != null && client.Password == password) || (admin != null && admin.Password == password) || (agent != null && agent.Password == password)
-            bool result = true;
+            var client = AppDatabase.FindClient(username);
+            var admin = AppDatabase.FindAdmin(username);
+            var agent = AppDatabase.FindAgent(username);
+            bool result = (client != null && client.Password == password) || (admin != null && admin.Password == password) || (agent != null && agent.Password == password);
             if (result)
             {
                 FormsAuthentication.SetAuthCookie(username, remember);

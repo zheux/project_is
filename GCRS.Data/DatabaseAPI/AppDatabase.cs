@@ -12,13 +12,25 @@ namespace GCRS.Data
         static ApplicationDbContext context = new ApplicationDbContext();
 
         #region Find
-        public static Cliente FindCliente(string username)
+        public static Cliente FindClient(string username)
         {
             Cliente cliente = context.Clientes.SingleOrDefault(m => m.Username == username);
             return cliente;
         }
+
+        public static Admin FindAdmin(string username)
+        {
+            Admin admin = context.Admins.SingleOrDefault(m => m.Username == username);
+            return admin;
+        }
+
+        public static Agente FindAgent(string username)
+        {
+            Agente agent = context.Agentes.SingleOrDefault(m => m.Username == username);
+            return agent;
+        }
         #endregion
-        
+
         #region READ
         public static List<Provincia> GetProvincias()
         {

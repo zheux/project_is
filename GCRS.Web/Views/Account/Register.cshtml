@@ -8,7 +8,7 @@
 <h2>Registro</h2>
 
 
-@using (Html.BeginForm(new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
 	@Html.AntiForgeryToken()
     <h4>Cree una cuenta nueva.</h4>
@@ -45,10 +45,6 @@
 	</div>
 
 }
-
-<div>
-	@Html.ActionLink("Back to List", "Index")
-</div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

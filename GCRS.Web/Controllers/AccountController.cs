@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using GCRS.Web.ViewModels;
 using GCRS.Web.Infrastructure;
+using GCRS.Data;
+using GCRS.Domain;
 
 namespace GCRS.Web.Controllers
 {
@@ -48,6 +50,28 @@ namespace GCRS.Web.Controllers
         {
             authProvider.LogOff();
             return RedirectToAction("Index", "Home");
+        }
+
+
+
+        // GET: Account/Register
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        // POST: Account/Register
+        [HttpPost]
+        public ActionResult Register(RegisterViewModel modelo)
+        {
+            if (ModelState.IsValid && AppDatabase.FindClient(modelo.Username) == null)
+            {
+                Cliente nuevo_cliente = new Cliente { Username = modelo.Username, Email = modelo.Email, Password = modelo.Password };
+                AppDatabase.AddClientes(nuevo_cliente);
+                return RedirectToAction("Index", "Home");
+            }
+            ModelState.AddModelError("Username", "The username is being used");
+            return View();
         }
     }
 }

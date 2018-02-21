@@ -16,27 +16,5 @@ namespace GCRS.Web.Controllers
         {
             return View(AppDatabase.GetClientes());
         }
-
-        // GET: Clientes/Registro
-        public ActionResult Registro()
-        {
-            return View();
-        }
-
-        // POST: Clientes/Registro
-        [HttpPost]
-        public ActionResult Registro(RegisterViewModel modelo)
-        {
-            if (ModelState.IsValid && AppDatabase.FindCliente(modelo.Username) == null)
-            {
-                Cliente nuevo_cliente = new Cliente { Username = modelo.Username, Email = modelo.Email, Password = modelo.Password };
-                AppDatabase.AddClientes(nuevo_cliente);
-                return RedirectToAction("Index");
-            }
-            ModelState.AddModelError("Username", "Username existente");
-            return View();
-        }
     }
-
-
 }

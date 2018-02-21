@@ -190,12 +190,12 @@
     <Content Include="Views\Categorias\Index.cshtml" />
     <Content Include="Views\UnidadesTiempoRenta\AddUnidadTiempoRenta.cshtml" />
     <Content Include="Views\UnidadesTiempoRenta\Index.cshtml" />
-    <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Admins\Index.cshtml" />
     <Content Include="Views\Agentes\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Clientes\Registro.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
