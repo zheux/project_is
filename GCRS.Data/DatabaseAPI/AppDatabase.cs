@@ -11,72 +11,6 @@ namespace GCRS.Data
     {
         static ApplicationDbContext context = new ApplicationDbContext();
 
-        #region Find
-        public static Cliente FindClient(string username)
-        {
-            Cliente cliente = context.Clientes.SingleOrDefault(m => m.Username == username);
-            return cliente;
-        }
-
-        public static Admin FindAdmin(string username)
-        {
-            Admin admin = context.Admins.SingleOrDefault(m => m.Username == username);
-            return admin;
-        }
-
-        public static Agente FindAgent(string username)
-        {
-            Agente agent = context.Agentes.SingleOrDefault(m => m.Username == username);
-            return agent;
-        }
-        #endregion
-
-        #region READ
-        public static List<Provincia> GetProvincias()
-        {
-            return context.Provincias.OrderBy(m => m.Nombre).ToList();
-        }
-
-
-        public static List<Municipio> GetMunicipios()
-        {
-            return context.Municipios.OrderBy(m => m.Nombre).ToList();
-        }
-
-
-        public static List<Reparto> GetRepartos()
-        {
-            return context.Repartos.OrderBy(m => m.Nombre).ToList();
-        }
-
-
-        public static List<Categoria> GetCategorias()
-        {
-            return context.Categorias.OrderBy(m => m.Nombre).ToList();
-        }
-
-
-        public static List<UnidadTiempoRenta> GetUnidadesTiempoRenta()
-        {
-            return context.UnidadesTiempoRenta.OrderBy(m => m.Nombre).ToList();
-        }
-
-        public static List<Admin> GetAdmins()
-        {
-            return context.Admins.OrderBy(m => m.Username).ToList();
-        }
-        
-        public static List<Cliente> GetClientes()
-        {
-            return context.Clientes.OrderBy(m => m.Username).ToList();
-        }
-
-        public static List<Agente> GetAgentes()
-        {
-            return context.Agentes.OrderBy(m => m.Username).ToList();
-        }
-        #endregion
-
         #region ADD
         public static void AddProvincia(Provincia p)
         {
@@ -151,7 +85,7 @@ namespace GCRS.Data
         }
         #endregion
 
-        #region DELETE
+        #region REMOVE
         public static void RemoveProvincia(int id)
         {
             if (context.Provincias.Find(id) != null)
@@ -197,31 +131,80 @@ namespace GCRS.Data
             }
         }
 
-        public static void RemoveAdmin(int id)
+        public static void RemoveUser(string username)
         {
-            if (context.Admins.Find(id) != null)
+            var user = context.Admins.SingleOrDefault(m => m.Username == username);
+            if (user != null)
             {
-                context.Admins.Remove(context.Admins.Find(id));
+                context.Admins.Remove(user);
                 context.SaveChanges();
             }
         }
+        #endregion
 
-        public static void RemoveCliente(int id)
+        #region FIND
+        public static Cliente FindClient(string username)
         {
-            if (context.Clientes.Find(id) != null)
-            {
-                context.Clientes.Remove(context.Clientes.Find(id));
-                context.SaveChanges();
-            }
+            Cliente cliente = context.Clientes.SingleOrDefault(m => m.Username == username);
+            return cliente;
         }
 
-        public static void RemoveAgente(int id)
+        public static Admin FindAdmin(string username)
         {
-            if (context.Agentes.Find(id) != null)
-            {
-                context.Agentes.Remove(context.Agentes.Find(id));
-                context.SaveChanges();
-            }
+            Admin admin = context.Admins.SingleOrDefault(m => m.Username == username);
+            return admin;
+        }
+
+        public static Agente FindAgent(string username)
+        {
+            Agente agent = context.Agentes.SingleOrDefault(m => m.Username == username);
+            return agent;
+        }
+        #endregion
+
+        #region LIST
+        public static List<Provincia> GetProvincias()
+        {
+            return context.Provincias.OrderBy(m => m.Nombre).ToList();
+        }
+
+
+        public static List<Municipio> GetMunicipios()
+        {
+            return context.Municipios.OrderBy(m => m.Nombre).ToList();
+        }
+
+
+        public static List<Reparto> GetRepartos()
+        {
+            return context.Repartos.OrderBy(m => m.Nombre).ToList();
+        }
+
+
+        public static List<Categoria> GetCategorias()
+        {
+            return context.Categorias.OrderBy(m => m.Nombre).ToList();
+        }
+
+
+        public static List<UnidadTiempoRenta> GetUnidadesTiempoRenta()
+        {
+            return context.UnidadesTiempoRenta.OrderBy(m => m.Nombre).ToList();
+        }
+
+        public static List<Admin> GetAdmins()
+        {
+            return context.Admins.OrderBy(m => m.Username).ToList();
+        }
+        
+        public static List<Cliente> GetClientes()
+        {
+            return context.Clientes.OrderBy(m => m.Username).ToList();
+        }
+
+        public static List<Agente> GetAgentes()
+        {
+            return context.Agentes.OrderBy(m => m.Username).ToList();
         }
         #endregion
     }
