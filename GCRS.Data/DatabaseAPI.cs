@@ -11,6 +11,14 @@ namespace GCRS.Data
     {
         static ApplicationDbContext context = new ApplicationDbContext();
 
+        #region Find
+        public static Cliente FindCliente(string username)
+        {
+            Cliente cliente = context.Clientes.Where(m => m.Username == username) == null ? null : context.Clientes.Where(m => m.Username == username).First();
+            return cliente;
+        }
+        #endregion
+        
         #region READ
         public static List<Provincia> GetProvincias()
         {
