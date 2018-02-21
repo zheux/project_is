@@ -149,6 +149,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\ClientesViewModel.cs" />
+    <Compile Include="ViewModels\NomencladorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\app.css" />
@@ -194,6 +196,7 @@
     <Content Include="Views\Agentes\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Clientes\Registro.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
