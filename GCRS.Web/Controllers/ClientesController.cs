@@ -27,14 +27,14 @@ namespace GCRS.Web.Controllers
         [HttpPost]
         public ActionResult Registro(RegisterViewModel modelo)
         {
-            //if (AppDatabase.FindCliente(modelo.Username) == null)
-            //{
+            if (ModelState.IsValid && AppDatabase.FindCliente(modelo.Username) == null)
+            {
                 Cliente nuevo_cliente = new Cliente { Username = modelo.Username, Email = modelo.Email, Password = modelo.Password };
                 AppDatabase.AddClientes(nuevo_cliente);
                 return RedirectToAction("Index");
-            //}
-            //ModelState.AddModelError("Username", "Username existente");
-            //return View();
+            }
+            ModelState.AddModelError("Username", "Username existente");
+            return View();
         }
     }
 

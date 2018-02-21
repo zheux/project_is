@@ -14,7 +14,7 @@ namespace GCRS.Data
         #region Find
         public static Cliente FindCliente(string username)
         {
-            Cliente cliente = context.Clientes.Where(m => m.Username == username) == null ? null : context.Clientes.Where(m => m.Username == username).First();
+            Cliente cliente = context.Clientes.SingleOrDefault(m => m.Username == username);
             return cliente;
         }
         #endregion
