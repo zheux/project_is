@@ -24,34 +24,29 @@
                 <li class="nav-item">
                     @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
                 </li>
-
-
-                <li class="nav-item">
-                    @Html.ActionLink("Provincias", "Index", "Provincias", null, new { @class = "nav-link" })
+                <li class="dropdown">
+                    <a class="dropdown-toggle nav-link" data-toggle="dropdown">Nomencladores<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Provincias", "Index", "Provincias", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Municipios", "Index", "Municipios", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Repartos", "Index", "Repartos", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Categorias", "Index", "Categorias", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Unidades Tiempo Renta", "Index", "UnidadesTiempoRenta", null, new { @class = "dropdown-item" })</li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Municipios", "Index", "Municipios", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Repartos", "Index", "Repartos", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Categorias", "Index", "Categorias", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Unidades Tiempo Renta", "Index", "UnidadesTiempoRenta", null, new { @class = "nav-link" })
-                </li>
-
-                <li class="nav-item">
-                    @Html.ActionLink("Administradores", "Index", "Admins", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Agentes", "Index", "Agentes", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Clientes", "Index", "Clientes", null, new { @class = "nav-link" })
+                <li class="dropdown">
+                    <a class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        Usuarios<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item">@Html.ActionLink("Administradores", "Index", "Admins", null, new { @class = "dropdown-item" })</li>
+                        <li class="nav-item">@Html.ActionLink("Agentes", "Index", "Agentes", null, new { @class = "dropdown-item" })</li>
+                        <li class="nav-item">@Html.ActionLink("Clientes", "Index", "Clientes", null, new { @class = "dropdown-item" })</li>
+                    </ul>
                 </li>
             </ul>
+            @Html.Partial("_LoginPartial");
         </div>
     </nav>
     <div class="container body-content h-75">

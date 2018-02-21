@@ -49,13 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="DatabaseAPI.cs" />
+    <Compile Include="DatabaseAPI\AppDatabase.cs" />
     <Compile Include="Migrations\201802191740546_TablasNuevas.cs" />
     <Compile Include="Migrations\201802191740546_TablasNuevas.Designer.cs">
       <DependentUpon>201802191740546_TablasNuevas.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DatabaseAPI\UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GCRS.Domain\GCRS.Domain.csproj">
