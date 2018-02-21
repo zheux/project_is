@@ -11,7 +11,11 @@ namespace GCRS.Web.Infrastructure
     {
         public bool Authenticate(string username, string password, bool remember)
         {
-            bool result = AuthenticateUser(username, password);
+            //var client = AppDatabase.FindClient(username);
+            //var admin = AppDatabase.FindAdmin(username);
+            //var agent = AppDatabase.FindAgent(username);
+            //bool result = (client != null && client.Password == password) || (admin != null && admin.Password == password) || (agent != null && agent.Password == password)
+            bool result = true;
             if (result)
             {
                 FormsAuthentication.SetAuthCookie(username, remember);
@@ -22,12 +26,6 @@ namespace GCRS.Web.Infrastructure
         public void LogOff()
         {
             FormsAuthentication.SignOut();
-        }
-
-        private bool AuthenticateUser(string username, string password)
-        {
-            //TODO: llamar al 'modelo' para verificar si los datos son validos
-            return true;
         }
     }
 }
