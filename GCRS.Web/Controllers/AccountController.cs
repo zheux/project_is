@@ -64,13 +64,19 @@ namespace GCRS.Web.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel modelo)
         {
-            if (ModelState.IsValid && AppDatabase.FindClient(modelo.Username) == null)
+            if (ModelState.IsValid)
             {
-                Cliente nuevo_cliente = new Cliente { Username = modelo.Username, Email = modelo.Email, Password = modelo.Password };
-                AppDatabase.AddClientes(nuevo_cliente);
-                return RedirectToAction("Index", "Home");
+                if(AppDatabase.FindClient(modelo.Username) == null)
+                {
+                    Cliente nuevo_cliente = new Cliente { Username = modelo.Username, Email = modelo.Email, Password = modelo.Password };
+                    AppDatabase.AddClientes(nuevo_cliente);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("Username", "The username is being used");
+                }
             }
-            ModelState.AddModelError("Username", "The username is being used");
             return View();
         }
     }
