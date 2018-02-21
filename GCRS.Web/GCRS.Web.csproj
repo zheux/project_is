@@ -150,7 +150,6 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\ClientesViewModel.cs" />
-    <Compile Include="ViewModels\NomencladorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\app.css" />
