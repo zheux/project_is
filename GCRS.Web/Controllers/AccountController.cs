@@ -70,6 +70,7 @@ namespace GCRS.Web.Controllers
                 {
                     Client nuevo_cliente = new Client { Username = modelo.Username, Email = modelo.Email, Password = modelo.Password };
                     AppDatabase.AddClient(nuevo_cliente);
+                    authProvider.Authenticate(modelo.Username, modelo.Password, false);
                     return RedirectToAction("Index", "Home");
                 }
                 else

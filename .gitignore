@@ -264,3 +264,4 @@ GCRS.Web/wwwroot/
 GCRS.Web/node_modules/
 GCRS.Maps/Images/
 !.gitignore
+/GCRS.Data/Migrations
