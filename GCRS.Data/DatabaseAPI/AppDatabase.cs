@@ -12,47 +12,47 @@ namespace GCRS.Data
         static ApplicationDbContext context = new ApplicationDbContext();
 
         #region ADD
-        public static void AddProvincia(Provincia p)
+        public static void AddProvince(Province p)
         {
             if (p != null)
             {
-                context.Provincias.Add(p);
+                context.Provinces.Add(p);
                 context.SaveChanges();
             }
         }
 
-        public static void AddMunicipio(Municipio p)
+        public static void AddMunicipality(Municipality p)
         {
             if (p != null)
             {
-                context.Municipios.Add(p);
+                context.Municipalities.Add(p);
                 context.SaveChanges();
             }
         }
 
-        public static void AddReparto(Reparto p)
+        public static void AddDistrict(District p)
         {
             if (p != null)
             {
-                context.Repartos.Add(p);
+                context.Districts.Add(p);
                 context.SaveChanges();
             }
         }
 
-        public static void AddCategoria(Categoria p)
+        public static void AddCategory(Category p)
         {
             if (p != null)
             {
-                context.Categorias.Add(p);
+                context.Categories.Add(p);
                 context.SaveChanges();
             }
         }
 
-        public static void AddUnidadTiempoRenta(UnidadTiempoRenta p)
+        public static void AddRentTimeUnit(RentTimeUnit p)
         {
             if (p != null)
             {
-                context.UnidadesTiempoRenta.Add(p);
+                context.RentTimeUnits.Add(p);
                 context.SaveChanges();
             }
         }
@@ -66,67 +66,67 @@ namespace GCRS.Data
             }
         }
 
-        public static void AddClientes(Cliente p)
+        public static void AddClient(Client p)
         {
             if (p != null)
             {
-                context.Clientes.Add(p);
+                context.Clients.Add(p);
                 context.SaveChanges();
             }
         }
         
-        public static void AddAgentes(Agente p)
+        public static void AddAgent(Agent p)
         {
             if (p != null)
             {
-                context.Agentes.Add(p);
+                context.Agents.Add(p);
                 context.SaveChanges();
             }
         }
         #endregion
 
         #region REMOVE
-        public static void RemoveProvincia(int id)
+        public static void RemoveProvince(int id)
         {
-            if (context.Provincias.Find(id) != null)
+            if (context.Provinces.Find(id) != null)
             {
-                context.Provincias.Remove(context.Provincias.Find(id));
+                context.Provinces.Remove(context.Provinces.Find(id));
                 context.SaveChanges();
             }
         }
 
-        public static void RemoveMunicipio(int id)
+        public static void RemoveMunicipality(int id)
         {
-            if (context.Municipios.Find(id) != null)
+            if (context.Municipalities.Find(id) != null)
             {
-                context.Municipios.Remove(context.Municipios.Find(id));
+                context.Municipalities.Remove(context.Municipalities.Find(id));
                 context.SaveChanges();
             }
         }
 
-        public static void RemoveReparto(int id)
+        public static void RemoveDistrict(int id)
         {
-            if (context.Repartos.Find(id) != null)
+            if (context.Districts.Find(id) != null)
             {
-                context.Repartos.Remove(context.Repartos.Find(id));
+                context.Districts.Remove(context.Districts.Find(id));
                 context.SaveChanges();
             }
         }
 
-        public static void RemoveCategoria(int id)
+        public static void RemoveCategory(int id)
         {
-            if (context.Categorias.Find(id) != null)
+            if (context.Categories.Find(id) != null)
             {
-                context.Categorias.Remove(context.Categorias.Find(id));
+                context.Categories.Remove(context.Categories.Find(id));
                 context.SaveChanges();
             }
         }
 
-        public static void RemoveUnidadTiempoRenta(int id)
+        public static void RemoveRentTimeUnit(int id)
         {
-            if (context.UnidadesTiempoRenta.Find(id) != null)
+            if (context.RentTimeUnits.Find(id) != null)
             {
-                context.UnidadesTiempoRenta.Remove(context.UnidadesTiempoRenta.Find(id));
+                context.RentTimeUnits.Remove(context.RentTimeUnits.Find(id));
                 context.SaveChanges();
             }
         }
@@ -143,9 +143,9 @@ namespace GCRS.Data
         #endregion
 
         #region FIND
-        public static Cliente FindClient(string username)
+        public static Client FindClient(string username)
         {
-            Cliente cliente = context.Clientes.SingleOrDefault(m => m.Username == username);
+            Client cliente = context.Clients.SingleOrDefault(m => m.Username == username);
             return cliente;
         }
 
@@ -155,41 +155,41 @@ namespace GCRS.Data
             return admin;
         }
 
-        public static Agente FindAgent(string username)
+        public static Agent FindAgent(string username)
         {
-            Agente agent = context.Agentes.SingleOrDefault(m => m.Username == username);
+            Agent agent = context.Agents.SingleOrDefault(m => m.Username == username);
             return agent;
         }
         #endregion
 
         #region LIST
-        public static List<Provincia> GetProvincias()
+        public static List<Province> GetProvinces()
         {
-            return context.Provincias.OrderBy(m => m.Nombre).ToList();
+            return context.Provinces.OrderBy(m => m.Name).ToList();
         }
 
 
-        public static List<Municipio> GetMunicipios()
+        public static List<Municipality> GetMunicipalities()
         {
-            return context.Municipios.OrderBy(m => m.Nombre).ToList();
+            return context.Municipalities.OrderBy(m => m.Name).ToList();
         }
 
 
-        public static List<Reparto> GetRepartos()
+        public static List<District> GetDistricts()
         {
-            return context.Repartos.OrderBy(m => m.Nombre).ToList();
+            return context.Districts.OrderBy(m => m.Name).ToList();
         }
 
 
-        public static List<Categoria> GetCategorias()
+        public static List<Category> GetCategories()
         {
-            return context.Categorias.OrderBy(m => m.Nombre).ToList();
+            return context.Categories.OrderBy(m => m.Name).ToList();
         }
 
 
-        public static List<UnidadTiempoRenta> GetUnidadesTiempoRenta()
+        public static List<RentTimeUnit> GetRentTimeUnits()
         {
-            return context.UnidadesTiempoRenta.OrderBy(m => m.Nombre).ToList();
+            return context.RentTimeUnits.OrderBy(m => m.Name).ToList();
         }
 
         public static List<Admin> GetAdmins()
@@ -197,14 +197,14 @@ namespace GCRS.Data
             return context.Admins.OrderBy(m => m.Username).ToList();
         }
         
-        public static List<Cliente> GetClientes()
+        public static List<Client> GetClients()
         {
-            return context.Clientes.OrderBy(m => m.Username).ToList();
+            return context.Clients.OrderBy(m => m.Username).ToList();
         }
 
-        public static List<Agente> GetAgentes()
+        public static List<Agent> GetAgents()
         {
-            return context.Agentes.OrderBy(m => m.Username).ToList();
+            return context.Agents.OrderBy(m => m.Username).ToList();
         }
         #endregion
     }

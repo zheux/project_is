@@ -1,0 +1,26 @@
+﻿@model IEnumerable<GCRS.Domain.District>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Repartos</h2>
+@Html.ActionLink("Add", "AddDistrict")
+<br />
+<table class="table">
+    @*Listar Repartos*@
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.Encode(item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

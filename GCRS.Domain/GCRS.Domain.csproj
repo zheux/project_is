@@ -41,14 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.cs" />
-    <Compile Include="Agente.cs" />
-    <Compile Include="Cliente.cs" />
-    <Compile Include="Oferta.cs" />
-    <Compile Include="Inmueble.cs" />
+    <Compile Include="Agent.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="Deal.cs" />
+    <Compile Include="Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renta.cs" />
-    <Compile Include="Usuario.cs" />
-    <Compile Include="Venta.cs" />
+    <Compile Include="Rent.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="Sell.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

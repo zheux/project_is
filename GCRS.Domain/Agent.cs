@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace GCRS.Domain
 {
-    public class Admin:User
+    public class Agent:User
     {
-
+        List<Deal> ManageList;
     }
 }

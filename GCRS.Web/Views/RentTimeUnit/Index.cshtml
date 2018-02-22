@@ -1,0 +1,26 @@
+﻿@model IEnumerable<GCRS.Domain.RentTimeUnit>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Unidades de Tiempo de Renta</h2>
+@Html.ActionLink("Add", "AddRentTimeUnit")
+<br />
+<table class="table">
+    @*Listar UnidadesTiempoRenta*@
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.Encode(item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

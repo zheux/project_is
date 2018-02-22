@@ -1,0 +1,26 @@
+﻿@model IEnumerable<GCRS.Domain.Municipality>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Municipios</h2>
+@Html.ActionLink("Add", "AddMunicipality")
+<br />
+<table class="table">
+    @*Listar Municipios*@
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.Encode(item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

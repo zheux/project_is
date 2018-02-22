@@ -54,6 +54,10 @@
     <Compile Include="Migrations\201802191740546_TablasNuevas.Designer.cs">
       <DependentUpon>201802191740546_TablasNuevas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802220416387_TranslateEntitiesNam.cs" />
+    <Compile Include="Migrations\201802220416387_TranslateEntitiesNam.Designer.cs">
+      <DependentUpon>201802220416387_TranslateEntitiesNam.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -72,6 +76,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201802191740546_TablasNuevas.resx">
       <DependentUpon>201802191740546_TablasNuevas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802220416387_TranslateEntitiesNam.resx">
+      <DependentUpon>201802220416387_TranslateEntitiesNam.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

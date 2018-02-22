@@ -131,16 +131,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminsController.cs" />
-    <Compile Include="Controllers\AgentesController.cs" />
-    <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AgentController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MapController.cs" />
-    <Compile Include="Controllers\CategoriasController.cs" />
-    <Compile Include="Controllers\UnidadesTiempoRentaController.cs" />
-    <Compile Include="Controllers\RepartosController.cs" />
-    <Compile Include="Controllers\ProvinciasController.cs" />
-    <Compile Include="Controllers\MunicipiosController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\RentTimeUnitController.cs" />
+    <Compile Include="Controllers\DistrictController.cs" />
+    <Compile Include="Controllers\ProvinceController.cs" />
+    <Compile Include="Controllers\MunicipalityController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,22 +179,22 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="webpack.config.js" />
-    <Content Include="Views\Municipios\AddMunicipio.cshtml" />
-    <Content Include="Views\Municipios\Index.cshtml" />
-    <Content Include="Views\Provincias\AddProvincia.cshtml" />
-    <Content Include="Views\Provincias\Index.cshtml" />
-    <Content Include="Views\Repartos\AddReparto.cshtml" />
-    <Content Include="Views\Repartos\Index.cshtml" />
-    <Content Include="Views\Categorias\AddCategoria.cshtml" />
-    <Content Include="Views\Categorias\Index.cshtml" />
-    <Content Include="Views\UnidadesTiempoRenta\AddUnidadTiempoRenta.cshtml" />
-    <Content Include="Views\UnidadesTiempoRenta\Index.cshtml" />
-    <Content Include="Views\Admins\Index.cshtml" />
-    <Content Include="Views\Agentes\Index.cshtml" />
+    <Content Include="Views\Municipality\AddMunicipality.cshtml" />
+    <Content Include="Views\Municipality\Index.cshtml" />
+    <Content Include="Views\Province\AddProvince.cshtml" />
+    <Content Include="Views\Province\Index.cshtml" />
+    <Content Include="Views\District\AddDistrict.cshtml" />
+    <Content Include="Views\District\Index.cshtml" />
+    <Content Include="Views\Category\AddCategory.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\RentTimeUnit\AddRentTimeUnit.cshtml" />
+    <Content Include="Views\RentTimeUnit\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Agent\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -68,8 +68,8 @@ namespace GCRS.Web.Controllers
             {
                 if(AppDatabase.FindClient(modelo.Username) == null)
                 {
-                    Cliente nuevo_cliente = new Cliente { Username = modelo.Username, Email = modelo.Email, Password = modelo.Password };
-                    AppDatabase.AddClientes(nuevo_cliente);
+                    Client nuevo_cliente = new Client { Username = modelo.Username, Email = modelo.Email, Password = modelo.Password };
+                    AppDatabase.AddClient(nuevo_cliente);
                     return RedirectToAction("Index", "Home");
                 }
                 else
