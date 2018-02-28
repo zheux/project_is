@@ -13,11 +13,7 @@ namespace GCRS.Web.Controllers
     public class AccountController : Controller
     {
         private IAuthProvider authProvider;
-
-        public AccountController()
-            :this(new FormAuthenticationProvider())
-        { }
-
+        
         public AccountController(IAuthProvider AuthProvider)
             : base()
         {

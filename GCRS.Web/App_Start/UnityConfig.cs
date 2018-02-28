@@ -2,6 +2,8 @@ using System.Web.Mvc;
 using Unity;
 using Unity.Mvc5;
 using GCRS.Web.Infrastructure;
+using GCRS.Domain;
+using GCRS.Data.Repositories;
 
 namespace GCRS.Web
 {
@@ -17,6 +19,9 @@ namespace GCRS.Web
             // e.g. container.RegisterType<ITestService, TestService>();
 
             container.RegisterType<IAuthProvider, FormAuthenticationProvider>();
+
+            container.RegisterType<IClientRepository, ClientRepository>();
+            
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

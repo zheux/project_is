@@ -11,10 +11,17 @@ namespace GCRS.Web.Controllers
 {
     public class ClientController : Controller
     {
+        IClientRepository clientRepository;
+
+        public ClientController(IClientRepository ClientRepository)
+        {
+            clientRepository = ClientRepository;
+        }
+
         // GET: Client
         public ActionResult Index()
         {
-            return View(AppDatabase.GetClients());
+            return View(clientRepository.GetClients());
         }
     }
 }
