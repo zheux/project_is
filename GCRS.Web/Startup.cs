@@ -14,6 +14,8 @@ namespace GCRS.Web
             ConfigureBundles(BundleTable.Bundles);
             ConfigureFilters(GlobalFilters.Filters);
             ConfigureRoutes(RouteTable.Routes);
+
+            UnityConfig.RegisterComponents();
         }
     }
 }
