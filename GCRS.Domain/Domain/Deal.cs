@@ -8,7 +8,7 @@ namespace GCRS.Domain
 {
     public enum State { Requested, Draft, Published, Paid, Canceled};
 
-    public class Deal
+    public abstract class Deal
     {
         public int Id { get; set; }
         public Client Client { get; set; }

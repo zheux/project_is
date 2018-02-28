@@ -3,7 +3,7 @@
 namespace GCRS.Domain
 {
 
-    public class Rent:Deal
+    public class Rental:Deal
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
