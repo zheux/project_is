@@ -51,6 +51,7 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="DatabaseAPI\AppDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ClientRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GCRS.Domain\GCRS.Domain.csproj">
