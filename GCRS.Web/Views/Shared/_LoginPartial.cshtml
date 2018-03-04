@@ -4,15 +4,15 @@
     {
     @Html.AntiForgeryToken()
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Hola " + User.Identity.Name + "!", "Index", "Manage", null, new { title = "Manage", @class = "nav-link"})</li>
-        <li><a class = "nav-link" href="javascript:document.getElementById('logoutForm').submit()">Cerrar Sesión</a></li>
+        <li class="nav-item">@Html.ActionLink("Hola " + User.Identity.Name + "!", "Index", "Manage", null, new { title = "Manage", @class = "nav-link"})</li>
+        <li class="nav-item"><a class = "nav-link" href="javascript:document.getElementById('logoutForm').submit()">Cerrar Sesión</a></li>
     </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Registrar", "Register", "Account", null, new { @class = "nav-link" })</li>
-        <li>@Html.ActionLink("Iniciar Sesión", "Login", "Account", null, new { @class = "nav-link" })</li>
+        <li class="nav-item">@Html.ActionLink("Registrar", "Register", "Account", null, new { @class = "nav-link" })</li>
+        <li class="nav-item">@Html.ActionLink("Iniciar Sesión", "Login", "Account", null, new { @class = "nav-link" })</li>
     </ul>
 }
