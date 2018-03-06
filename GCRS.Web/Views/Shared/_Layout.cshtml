@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - GCRS</title>
     @Styles.Render("~/Content/css")
+    <script defer src="~/Content/fontawesome-all.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -45,6 +46,8 @@
                         <li class="nav-item">@Html.ActionLink("Clientes", "Index", "Client", null, new { @class = "dropdown-item" })</li>
                     </ul>
                 </li>
+
+                <li class="nav-item">@Html.ActionLink("Rentas", "Rental", "Search", null, new { @class = "nav-link" })</li>
             </ul>
             @Html.Partial("_LoginPartial")
         </div>

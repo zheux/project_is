@@ -154,9 +154,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\app.css" />
+    <Content Include="Content\fontawesome-all.js" />
     <Content Include="favicon.ico" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Global.asax" />
+    <Content Include="Media\RentalPhotos\test-image-1.jpg" />
+    <Content Include="Media\RentalPhotos\test-image-2.jpg" />
+    <Content Include="Media\RentalPhotos\test-image-3.jpg" />
+    <Content Include="Media\RentalPhotos\test-image-4.jpg" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -164,6 +169,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Views\Search\Rental.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

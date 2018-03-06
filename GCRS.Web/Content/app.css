@@ -63,3 +63,83 @@ a.dropdown-item {
     padding-top: .2rem;
     padding-bottom: 0;
 }
+
+
+/*Deal List*/
+.deal-li {
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+    margin-top: 2rem;
+}
+
+.deal-li:hover {
+    -webkit-transform: scale(1.02,1.02);
+    transform: scale(1.02,1.02);
+    box-shadow: 0 0 25px 0 rgba(53,62,68,0.4);
+    transition: transform 200ms ease;
+}
+
+.deal-li-img {
+    height: 10rem;
+    width: 15rem;
+}
+
+.deal-li-title {
+    font-size: 1.3rem;
+    font-weight: bolder;
+    font-family: Arial !important;
+}
+
+.media-body{
+    font-weight: 400;
+}
+
+.price-tag{
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+    text-align: right;
+}
+
+.price {
+    color: rgb(2, 108, 180);
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+/*Advanced Search Filters*/
+.dropdown.dropdown-lg .dropdown-menu {
+    margin-top: -1px;
+    padding: 1rem 1.5rem;
+}
+
+.input-group-btn .btn-group {
+    display: flex !important;
+}
+
+.form-control{
+    border-radius: .3rem .3rem !important;
+    width: 100% !important;
+}
+
+.form-control:focus{
+    box-shadow: 0 0 5px 1px #0067db;
+}
+
+@media screen and (min-width: 768px) {
+    #adv-search {
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    .dropdown.dropdown-lg {
+        position: static !important;
+    }
+
+    .dropdown.dropdown-lg .dropdown-menu {
+        min-width: 35rem;
+    }
+}
+
+.drop-label{
+    font-weight: 600;
+}

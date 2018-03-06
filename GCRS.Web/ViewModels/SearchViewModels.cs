@@ -20,6 +20,8 @@ namespace GCRS.Web.ViewModels
 
         public string SelectedDistrict { get; set; }
 
+        public string SelectedCategory { get; set; }
+
         public int MinimumPrice { get; set; }
 
         public int MaximumPrice { get; set; }
