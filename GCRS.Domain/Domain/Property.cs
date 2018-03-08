@@ -4,10 +4,10 @@
     {
         public int Id { get; set; }
         public int RoomsCount { get; set; }
-        public Category Categoria { get; set; }
-        public Province Provincia { get; set; }
-        public District Reparto { get; set; }
-        public Municipality Municipio { get; set; }
+        public Category Category { get; set; }
+        public Province Province { get; set; }
+        public District District { get; set; }
+        public Municipality Municipality { get; set; }
         public string Direccion { get; set; }
         public string InfoAdicional { get; set; }
     }

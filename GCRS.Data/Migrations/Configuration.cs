@@ -37,21 +37,23 @@ namespace GCRS.Data.Migrations
             if(context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche") == null)
                 context.RentTimeUnits.AddOrUpdate(new RentTimeUnit() { Name = "Noche" });
 
+            context.SaveChanges();
+
             Property testProp = new Property()
             {
                 Direccion = "23 entre 20 y 22",
-                Categoria = context.Categories.SingleOrDefault(m => m.Name == "Simple"),
-                Provincia = context.Provinces.SingleOrDefault(m => m.Name == "La Habana"),
-                Municipio = context.Municipalities.SingleOrDefault(m => m.Name == "Vedado"),
-                Reparto = context.Districts.SingleOrDefault(m => m.Name == "Nuevo Vedado"),
+                Category = context.Categories.SingleOrDefault(m => m.Name == "Simple"),
+                Province = context.Provinces.SingleOrDefault(m => m.Name == "La Habana"),
+                Municipality = context.Municipalities.SingleOrDefault(m => m.Name == "Vedado"),
+                District = context.Districts.SingleOrDefault(m => m.Name == "Nuevo Vedado"),
                 RoomsCount = 1
             };
 
             Property testProp2 = new Property()
             {
                 Direccion = "Matanzas",
-                Categoria = context.Categories.SingleOrDefault(m => m.Name == "Suite"),
-                Provincia = context.Provinces.SingleOrDefault(m => m.Name == "Matanzas"),
+                Category = context.Categories.SingleOrDefault(m => m.Name == "Suite"),
+                Province = context.Provinces.SingleOrDefault(m => m.Name == "Matanzas"),
                 RoomsCount = 1
             };
 
