@@ -9,7 +9,7 @@ namespace GCRS.Domain
     public interface IMunicipalityRepository
     {
         void AddMunicipality(Municipality municipality);
-        void RemoveMunicipality(string name);
+        void RemoveMunicipality(int id);
         Municipality FindMunicipality(Func<Municipality, bool> predicate);
         IEnumerable<Municipality> GetMunicipalities();
     }

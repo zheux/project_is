@@ -21,11 +21,11 @@ namespace GCRS.Data.Repositories
             }
         }
 
-        public void RemoveRentTimeUnit(string name)
+        public void RemoveRentTimeUnit(int id)
         {
             using (var context = new ApplicationDbContext())
             {
-                var unit = context.RentTimeUnits.SingleOrDefault(m => m.Name == name);
+                var unit = context.RentTimeUnits.SingleOrDefault(m => m.Id == id);
                 if (unit != null)
                 {
                     context.RentTimeUnits.Remove(unit);

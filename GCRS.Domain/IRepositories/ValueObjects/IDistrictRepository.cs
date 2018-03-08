@@ -9,7 +9,7 @@ namespace GCRS.Domain
     public interface IDistrictRepository
     {
         void AddDistrict(District district);
-        void RemoveDistrict(string name);
+        void RemoveDistrict(int id);
         District FindDistrict(Func<District, bool> predicate);
         IEnumerable<District> GetDistricts();
     }

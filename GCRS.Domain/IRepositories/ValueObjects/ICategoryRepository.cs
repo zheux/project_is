@@ -9,7 +9,7 @@ namespace GCRS.Domain
     public interface ICategoryRepository
     {
         void AddCategory(Category category);
-        void RemoveCategory(string name);
+        void RemoveCategory(int id);
         Category FindCategory(Func<Category, bool> predicate);
         IEnumerable<Category> GetCategories();
     }

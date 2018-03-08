@@ -21,11 +21,11 @@ namespace GCRS.Data.Repositories
             }
         }
 
-        public void RemoveProvince(string name)
+        public void RemoveProvince(int id)
         {
             using (var context = new ApplicationDbContext())
             {
-                var Province = context.Provinces.SingleOrDefault(m => m.Name == name);
+                var Province = context.Provinces.SingleOrDefault(m => m.Id == id);
                 if (Province != null)
                 {
                     context.Provinces.Remove(Province);

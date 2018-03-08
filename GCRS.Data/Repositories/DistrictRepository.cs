@@ -21,11 +21,11 @@ namespace GCRS.Data.Repositories
             }
         }
 
-        public void RemoveDistrict(string name)
+        public void RemoveDistrict(int id)
         {
             using (var context = new ApplicationDbContext())
             {
-                var district = context.Districts.SingleOrDefault(m => m.Name == name);
+                var district = context.Districts.SingleOrDefault(m => m.Id == id);
                 if (district != null)
                 {
                     context.Districts.Remove(district);

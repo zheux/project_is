@@ -21,11 +21,11 @@ namespace GCRS.Data.Repositories
             }
         }
 
-        public void RemoveCategory(string name)
+        public void RemoveCategory(int id)
         {
             using (var context = new ApplicationDbContext())
             {
-                var category = context.Categories.SingleOrDefault(m => m.Name == name);
+                var category = context.Categories.SingleOrDefault(m => m.Id == id);
                 if (category != null)
                 {
                     context.Categories.Remove(category);

@@ -9,7 +9,7 @@ namespace GCRS.Domain
     public interface IProvinceRepository
     {
         void AddProvince(Province province);
-        void RemoveProvince(string name);
+        void RemoveProvince(int id);
         Province FindProvince(Func<Province, bool> predicate);
         IEnumerable<Province> GetProvinces();
     }

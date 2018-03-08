@@ -9,7 +9,7 @@ namespace GCRS.Domain
     public interface IRentTimeUnitRepository
     {
         void AddRentTimeUnit(RentTimeUnit rentTimeUnit);
-        void RemoveRentTimeUnit(string name);
+        void RemoveRentTimeUnit(int id);
         RentTimeUnit FindRentTimeUnit(Func<RentTimeUnit, bool> predicate);
         IEnumerable<RentTimeUnit> GetRentTimeUnits();
     }

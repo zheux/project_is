@@ -21,11 +21,11 @@ namespace GCRS.Data.Repositories
             }
         }
 
-        public void RemoveMunicipality(string name)
+        public void RemoveMunicipality(int id)
         {
             using (var context = new ApplicationDbContext())
             {
-                var municipality = context.Municipalities.SingleOrDefault(m => m.Name == name);
+                var municipality = context.Municipalities.SingleOrDefault(m => m.Id == id);
                 if (municipality != null)
                 {
                     context.Municipalities.Remove(municipality);
