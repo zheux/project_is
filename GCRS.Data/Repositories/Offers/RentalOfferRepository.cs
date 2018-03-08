@@ -46,7 +46,15 @@ namespace GCRS.Data.Repositories
         {
             using (var context = new ApplicationDbContext())
             {
-                return context.RentalOffers.ToList();
+                return context.RentalOffers.Include("RTU")
+                                            .Include("Property")
+                                            .Include("Property.Province")
+                                            .Include("Property.Municipality")
+                                            .Include("Property.District")
+                                            .Include("Property.Category")
+                                            .Include("Client")
+                                            .Include("Agent")
+                                            .ToList();
             }
         }
     }
