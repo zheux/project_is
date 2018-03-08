@@ -8,6 +8,7 @@ namespace GCRS.Domain
 {
     public class Agent:User
     {
-        List<Deal> ManageList;
+        public ICollection<SellOffer> SellDraftList { get; set; }
+        public ICollection<RentalOffer> RentalDraftList { get; set; }
     }
 }

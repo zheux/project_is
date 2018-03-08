@@ -31,7 +31,7 @@ namespace GCRS.Web.ViewModels
     {
         public RentalSearchFilterVM Filters;
 
-        public IEnumerable<GCRS.Domain.Rental> FilteredRentals;
+        public IEnumerable<GCRS.Domain.RentalOffer> FilteredRentals;
 
         public IEnumerable<GCRS.Domain.Province> Provinces;
         public IEnumerable<GCRS.Domain.Municipality> Municipalities;

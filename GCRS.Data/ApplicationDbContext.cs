@@ -17,13 +17,17 @@ namespace GCRS.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<RentTimeUnit> RentTimeUnits { get; set; }
 
+        //Usuarios
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Agent> Agents { get; set; }
 
+        //Propiedades
         public DbSet<Property> Properties { get; set; }
 
-        public DbSet<Deal> Deals { get; set; }
+        //Anuncios
+        public DbSet<SellOffer> SellOffers{ get; set; }
+        public DbSet<RentalOffer> RentalOffers { get; set; }
 
         public ApplicationDbContext() : base("name=db")
         {
