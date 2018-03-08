@@ -368,6 +368,10 @@
       <Project>{5295646d-72b0-4ce1-bf30-4aed48e25caf}</Project>
       <Name>GCRS.Maps</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GCRS.Services\GCRS.Services.csproj">
+      <Project>{917cb698-2b94-4d33-aaf2-4c7bb00f353e}</Project>
+      <Name>GCRS.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

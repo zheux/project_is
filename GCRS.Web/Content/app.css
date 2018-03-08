@@ -106,6 +106,19 @@ a.dropdown-item {
     font-weight: bold;
 }
 
+.deal-info {
+    background-color: rgba(53,62,68,0.1);
+    position: absolute;
+    bottom: 0;
+    left: 15.5rem;
+    right: 0;
+    min-height: 2rem;
+    padding-top: .1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-style: italic;
+}
+
 /*Advanced Search Filters*/
 .dropdown.dropdown-lg .dropdown-menu {
     margin-top: -1px;
