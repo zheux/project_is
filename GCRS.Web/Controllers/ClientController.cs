@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GCRS.Data;
 using GCRS.Web.ViewModels;
 using GCRS.Domain;
 
@@ -11,17 +10,18 @@ namespace GCRS.Web.Controllers
 {
     public class ClientController : Controller
     {
-        IClientRepository clientRepository;
+        private IClientRepository _clientRepo;
 
         public ClientController(IClientRepository ClientRepository)
+            :base()
         {
-            clientRepository = ClientRepository;
+            _clientRepo = ClientRepository;
         }
 
         // GET: Client
         public ActionResult Index()
         {
-            return View(clientRepository.GetClients());
+            return View(_clientRepo.GetClients());
         }
     }
 }

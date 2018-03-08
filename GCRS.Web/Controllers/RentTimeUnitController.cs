@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GCRS.Data;
+using GCRS.Domain;
 
 namespace GCRS.Web.Controllers
 {
     public class RentTimeUnitController : Controller
     {
+        private IRentTimeUnitRepository _rentTimeUnitRepo;
+        
+        public RentTimeUnitController(IRentTimeUnitRepository RentTimeUnitRepository)
+        {
+            _rentTimeUnitRepo= RentTimeUnitRepository;
+        }
+
         // GET: UnidadesTiempoRenta
         public ActionResult Index()
         {
-            return View(AppDatabase.GetRentTimeUnits());
+            return View(_rentTimeUnitRepo.GetRentTimeUnits());
         }
 
 
@@ -34,7 +41,7 @@ namespace GCRS.Web.Controllers
             }
             else
             {
-                AppDatabase.AddRentTimeUnit(new Domain.RentTimeUnit() { Name = name });
+                _rentTimeUnitRepo.AddRentTimeUnit(new Domain.RentTimeUnit() { Name = name });
             }
             return RedirectToAction("Index");
         }
@@ -43,7 +50,7 @@ namespace GCRS.Web.Controllers
         // GET: Nomenclador/Delete/5
         public ActionResult Delete(int id)
         {
-            AppDatabase.RemoveRentTimeUnit(id);
+            _rentTimeUnitRepo.RemoveRentTimeUnit(id);
             return RedirectToAction("Index");
         }
     }

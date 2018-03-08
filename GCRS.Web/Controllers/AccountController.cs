@@ -5,19 +5,20 @@ using System.Web;
 using System.Web.Mvc;
 using GCRS.Web.ViewModels;
 using GCRS.Web.Infrastructure;
-using GCRS.Data;
 using GCRS.Domain;
 
 namespace GCRS.Web.Controllers
 {
     public class AccountController : Controller
     {
-        private IAuthProvider authProvider;
-        
-        public AccountController(IAuthProvider AuthProvider)
+        private IAuthProvider _authProvider;
+        private IClientRepository _clientRepo;
+
+        public AccountController(IAuthProvider AuthProvider, IClientRepository ClientRepository)
             : base()
         {
-            authProvider = AuthProvider;
+            _authProvider = AuthProvider;
+            _clientRepo = ClientRepository;
         }
 
         //GET: Account/Login
@@ -33,7 +34,7 @@ namespace GCRS.Web.Controllers
         {
             if (!Request.IsAuthenticated)
             {
-                if(authProvider.Authenticate(model.Username, model.Password, false))
+                if(_authProvider.Authenticate(model.Username, model.Password, false))
                 {
                     return Redirect(returnUrl ?? Url.Action("Index", "Home"));
                 }
@@ -44,7 +45,7 @@ namespace GCRS.Web.Controllers
         //GET: Account/LogOff
         public ActionResult LogOff()
         {
-            authProvider.LogOff();
+            _authProvider.LogOff();
             return RedirectToAction("Index", "Home");
         }
 
@@ -62,11 +63,11 @@ namespace GCRS.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(AppDatabase.FindClient(modelo.Username) == null)
+                if(_clientRepo.FindClient(m => m.Username == modelo.Username) == null)
                 {
                     Client nuevo_cliente = new Client { Username = modelo.Username, Email = modelo.Email, Password = modelo.Password };
-                    AppDatabase.AddClient(nuevo_cliente);
-                    authProvider.Authenticate(modelo.Username, modelo.Password, false);
+                    _clientRepo.AddClient(nuevo_cliente);
+                    _authProvider.Authenticate(modelo.Username, modelo.Password, false);
                     return RedirectToAction("Index", "Home");
                 }
                 else

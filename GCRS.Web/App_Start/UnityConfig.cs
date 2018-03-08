@@ -21,7 +21,15 @@ namespace GCRS.Web
             container.RegisterType<IAuthProvider, FormAuthenticationProvider>();
 
             container.RegisterType<IClientRepository, ClientRepository>();
-            
+            container.RegisterType<IAdminRepository, AdminRepository>();
+            container.RegisterType<IAgentRepository, AgentRepository>();
+
+            container.RegisterType<IProvinceRepository, ProvinceRepository>();
+            container.RegisterType<IMunicipalityRepository, MunicipalityRepository>();
+            container.RegisterType<IDistrictRepository, DistrictRepository>();
+            container.RegisterType<ICategoryRepository, CategoryRepository>();
+            container.RegisterType<IRentTimeUnitRepository, RentTimeUnitRepository>();
+
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

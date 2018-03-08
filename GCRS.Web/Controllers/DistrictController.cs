@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GCRS.Data;
+using GCRS.Domain;
 
 namespace GCRS.Web.Controllers
 {
     public class DistrictController : Controller
     {
+        private IDistrictRepository _districtRepo;
+        
+        public DistrictController(IDistrictRepository DistrictRepository)
+        {
+            _districtRepo = DistrictRepository;
+        }
+
         // GET: District
         public ActionResult Index()
         {
-            return View(AppDatabase.GetDistricts());
+            return View(_districtRepo.GetDistricts());
         }
 
 
@@ -34,7 +41,7 @@ namespace GCRS.Web.Controllers
             }
             else
             {
-                AppDatabase.AddDistrict(new Domain.District() { Name = name });
+                _districtRepo.AddDistrict(new Domain.District() { Name = name });
             }
             return RedirectToAction("Index");
         }
@@ -43,7 +50,7 @@ namespace GCRS.Web.Controllers
         // GET: District/Delete/5
         public ActionResult Delete(int id)
         {
-            AppDatabase.RemoveDistrict(id);
+            _districtRepo.RemoveDistrict(id);
             return RedirectToAction("Index");
         }
     }

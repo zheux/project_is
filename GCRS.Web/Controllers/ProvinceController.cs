@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GCRS.Data;
+using GCRS.Domain;
 
 namespace GCRS.Web.Controllers
 {
+
     public class ProvinceController : Controller
     {
+        private IProvinceRepository _provinceRepo;
+        
+        public ProvinceController(IProvinceRepository ProvinceRepository)
+        {
+            _provinceRepo = ProvinceRepository;
+        }
+
         // GET: Provincias
         public ActionResult Index()
         {
-            return View(AppDatabase.GetProvinces());
+            return View(_provinceRepo.GetProvinces());
         }
-
-
 
         // GET: Nomenclador/AddProvincia
         public ActionResult AddProvince()
@@ -34,7 +40,7 @@ namespace GCRS.Web.Controllers
             }
             else
             {
-                AppDatabase.AddProvince(new Domain.Province() { Name = name });
+                _provinceRepo.AddProvince(new Domain.Province() { Name = name });
             }
             return RedirectToAction("Index");
         }
@@ -43,7 +49,7 @@ namespace GCRS.Web.Controllers
         // GET: Nomenclador/Delete/5
         public ActionResult Delete(int id)
         {
-            AppDatabase.RemoveProvince(id);
+            _provinceRepo.RemoveProvince(id);
             return RedirectToAction("Index");
         }
     }

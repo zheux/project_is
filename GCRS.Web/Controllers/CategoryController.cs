@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GCRS.Data;
+using GCRS.Domain;
 
 namespace GCRS.Web.Controllers
 {
     public class CategoryController : Controller
     {
+        private ICategoryRepository _categoryRepo;
+        
+        public CategoryController(ICategoryRepository CategoryRepository)
+        {
+            _categoryRepo = CategoryRepository;
+        }
+
         // GET: Category
         public ActionResult Index()
         {
-            return View(AppDatabase.GetCategories());
+            return View(_categoryRepo.GetCategories());
         }
 
 
@@ -34,7 +41,7 @@ namespace GCRS.Web.Controllers
             }
             else
             {
-                AppDatabase.AddCategory(new Domain.Category() { Name = name });
+                _categoryRepo.AddCategory(new Domain.Category() { Name = name });
             }
             return RedirectToAction("Index");
         }
@@ -43,7 +50,7 @@ namespace GCRS.Web.Controllers
         // GET: Category/Delete/5
         public ActionResult Delete(int id)
         {
-            AppDatabase.RemoveCategory(id);
+            _categoryRepo.RemoveCategory(id);
             return RedirectToAction("Index");
         }
     }
