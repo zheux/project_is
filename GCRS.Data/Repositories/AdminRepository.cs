@@ -7,46 +7,46 @@ using GCRS.Domain;
 
 namespace GCRS.Data.Repositories
 {
-    public class ClientRepository : IClientRepository
+    public class AdminRepository : IAdminRepository
     {
-        public void AddClient(Client client)
+        public void AddAdmin(Admin admin)
         {
             using (var context = new ApplicationDbContext())
             {
-                if (client != null)
+                if (admin != null)
                 {
-                    context.Clients.Add(client);
+                    context.Admins.Add(admin);
                     context.SaveChanges();
                 }
             }
         }
 
-        public void RemoveClient(string username)
+        public void RemoveAdmin(string username)
         {
             using (var context = new ApplicationDbContext())
             {
-                var client = context.Clients.SingleOrDefault(m => m.Username == username);
-                if (client != null)
+                var admin = context.Admins.SingleOrDefault(m => m.Username == username);
+                if (admin != null)
                 {
-                    context.Clients.Remove(client);
+                    context.Admins.Remove(admin);
                     context.SaveChanges();
                 }
             }
         }
 
-        public Client FindClient(Func<Client, bool> predicate)
+        public Admin FindAdmin(Func<Admin, bool> predicate)
         {
             using (var context = new ApplicationDbContext())
             {
-                return context.Clients.SingleOrDefault(predicate);
+                return context.Admins.SingleOrDefault(predicate);
             }
         }
         
-        public IEnumerable<Client> GetClients()
+        public IEnumerable<Admin> GetAdmins()
         {
             using (var context = new ApplicationDbContext())
             {
-                return context.Clients.ToList();
+                return context.Admins.ToList();
             }
         }
     }

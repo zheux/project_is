@@ -7,46 +7,46 @@ using GCRS.Domain;
 
 namespace GCRS.Data.Repositories
 {
-    public class ClientRepository : IClientRepository
+    public class MunicipalityRepository : IMunicipalityRepository
     {
-        public void AddClient(Client client)
+        public void AddMunicipality(Municipality municipality)
         {
             using (var context = new ApplicationDbContext())
             {
-                if (client != null)
+                if (municipality != null)
                 {
-                    context.Clients.Add(client);
+                    context.Municipalities.Add(municipality);
                     context.SaveChanges();
                 }
             }
         }
 
-        public void RemoveClient(string username)
+        public void RemoveMunicipality(string name)
         {
             using (var context = new ApplicationDbContext())
             {
-                var client = context.Clients.SingleOrDefault(m => m.Username == username);
-                if (client != null)
+                var municipality = context.Municipalities.SingleOrDefault(m => m.Name == name);
+                if (municipality != null)
                 {
-                    context.Clients.Remove(client);
+                    context.Municipalities.Remove(municipality);
                     context.SaveChanges();
                 }
             }
         }
 
-        public Client FindClient(Func<Client, bool> predicate)
+        public Municipality FindMunicipality(Func<Municipality, bool> predicate)
         {
             using (var context = new ApplicationDbContext())
             {
-                return context.Clients.SingleOrDefault(predicate);
+                return context.Municipalities.SingleOrDefault(predicate);
             }
         }
         
-        public IEnumerable<Client> GetClients()
+        public IEnumerable<Municipality> GetMunicipalities()
         {
             using (var context = new ApplicationDbContext())
             {
-                return context.Clients.ToList();
+                return context.Municipalities.ToList();
             }
         }
     }

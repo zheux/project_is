@@ -7,46 +7,46 @@ using GCRS.Domain;
 
 namespace GCRS.Data.Repositories
 {
-    public class ClientRepository : IClientRepository
+    public class CategoryRepository : ICategoryRepository
     {
-        public void AddClient(Client client)
+        public void AddCategory(Category category)
         {
             using (var context = new ApplicationDbContext())
             {
-                if (client != null)
+                if (category != null)
                 {
-                    context.Clients.Add(client);
+                    context.Categories.Add(category);
                     context.SaveChanges();
                 }
             }
         }
 
-        public void RemoveClient(string username)
+        public void RemoveCategory(string name)
         {
             using (var context = new ApplicationDbContext())
             {
-                var client = context.Clients.SingleOrDefault(m => m.Username == username);
-                if (client != null)
+                var category = context.Categories.SingleOrDefault(m => m.Name == name);
+                if (category != null)
                 {
-                    context.Clients.Remove(client);
+                    context.Categories.Remove(category);
                     context.SaveChanges();
                 }
             }
         }
 
-        public Client FindClient(Func<Client, bool> predicate)
+        public Category FindCategory(Func<Category, bool> predicate)
         {
             using (var context = new ApplicationDbContext())
             {
-                return context.Clients.SingleOrDefault(predicate);
+                return context.Categories.SingleOrDefault(predicate);
             }
         }
         
-        public IEnumerable<Client> GetClients()
+        public IEnumerable<Category> GetCategories()
         {
             using (var context = new ApplicationDbContext())
             {
-                return context.Clients.ToList();
+                return context.Categories.ToList();
             }
         }
     }

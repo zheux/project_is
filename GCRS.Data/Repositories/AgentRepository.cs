@@ -7,46 +7,46 @@ using GCRS.Domain;
 
 namespace GCRS.Data.Repositories
 {
-    public class ClientRepository : IClientRepository
+    public class AgentRepository : IAgentRepository
     {
-        public void AddClient(Client client)
+        public void AddAgent(Agent agent)
         {
             using (var context = new ApplicationDbContext())
             {
-                if (client != null)
+                if (agent != null)
                 {
-                    context.Clients.Add(client);
+                    context.Agents.Add(agent);
                     context.SaveChanges();
                 }
             }
         }
 
-        public void RemoveClient(string username)
+        public void RemoveAgent(string username)
         {
             using (var context = new ApplicationDbContext())
             {
-                var client = context.Clients.SingleOrDefault(m => m.Username == username);
-                if (client != null)
+                var agent = context.Agents.SingleOrDefault(m => m.Username == username);
+                if (agent != null)
                 {
-                    context.Clients.Remove(client);
+                    context.Agents.Remove(agent);
                     context.SaveChanges();
                 }
             }
         }
 
-        public Client FindClient(Func<Client, bool> predicate)
+        public Agent FindAgent(Func<Agent, bool> predicate)
         {
             using (var context = new ApplicationDbContext())
             {
-                return context.Clients.SingleOrDefault(predicate);
+                return context.Agents.SingleOrDefault(predicate);
             }
         }
         
-        public IEnumerable<Client> GetClients()
+        public IEnumerable<Agent> GetAgents()
         {
             using (var context = new ApplicationDbContext())
             {
-                return context.Clients.ToList();
+                return context.Agents.ToList();
             }
         }
     }
