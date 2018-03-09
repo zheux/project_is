@@ -48,8 +48,8 @@ namespace GCRS.Web.Controllers
                     ret = false;
                 if (filters.MaximumPrice == 0 && filters.MinimumPrice == 0)
                     ret = true;
-                if (m.Title.Split().Contains(filters.Keywords))
-                    ret = true;
+                if (filters.Keywords != null && !m.Title.Split().Contains(filters.Keywords))
+                    ret = false;
                 if (filters.SelectedCategory != null && (m.Property.Category == null || m.Property.Category.Name != filters.SelectedCategory))
                     ret = false;
                 if (filters.SelectedProvince != null && (m.Property.Province == null || m.Property.Province.Name != filters.SelectedProvince))
