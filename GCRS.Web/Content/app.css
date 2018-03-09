@@ -38,13 +38,30 @@ a.navbar-brand {
     font-weight: 700;
 }
 
-a.nav-link{
+a.nav-link {
     color: black !important;
+    font-weight: 500;
 }
 
-a.nav-link:hover{
+.navbar-icon {
+    font-size: 1.2rem;
+    width: 2rem !important;
+}
+
+a.nav-link:hover {
     border-bottom: solid 0.3rem #0067db;
+    transition: border-bottom 100ms ease;
     height: 2.5rem;
+}
+
+.dropdown.show {
+    background-color: rgba(234, 234, 234, 0.91);
+    transition: background 200ms ease;
+}
+
+.dropdown {
+    background-color: #f5f5f5;
+    transition: background 200ms ease;
 }
 
 a.dropdown-item {
@@ -60,7 +77,7 @@ a.dropdown-item {
 }
 
 .navbar{
-    padding-top: .2rem;
+    padding-top: 0rem;
     padding-bottom: 0;
 }
 

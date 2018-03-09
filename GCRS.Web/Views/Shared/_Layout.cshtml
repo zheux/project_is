@@ -25,28 +25,6 @@
                 <li class="nav-item">
                     @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
                 </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle nav-link" data-toggle="dropdown">Nomencladores<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Provincias", "Index", "Province", null, new { @class = "dropdown-item" })</li>
-                        <li>@Html.ActionLink("Municipios", "Index", "Municipality", null, new { @class = "dropdown-item" })</li>
-                        <li>@Html.ActionLink("Repartos", "Index", "District", null, new { @class = "dropdown-item" })</li>
-                        <li>@Html.ActionLink("Categorias", "Index", "Category", null, new { @class = "dropdown-item" })</li>
-                        <li>@Html.ActionLink("Unidades Tiempo Renta", "Index", "RentTimeUnit", null, new { @class = "dropdown-item" })</li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        Usuarios<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="nav-item">@Html.ActionLink("Administradores", "Index", "Admin", null, new { @class = "dropdown-item" })</li>
-                        <li class="nav-item">@Html.ActionLink("Agentes", "Index", "Agent", null, new { @class = "dropdown-item" })</li>
-                        <li class="nav-item">@Html.ActionLink("Clientes", "Index", "Client", null, new { @class = "dropdown-item" })</li>
-                    </ul>
-                </li>
-
                 <li class="nav-item">@Html.ActionLink("Rentas", "Rental", "Search", null, new { @class = "nav-link" })</li>
             </ul>
             @Html.Partial("_LoginPartial")

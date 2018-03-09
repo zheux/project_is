@@ -2,17 +2,40 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
-    <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item">@Html.ActionLink("Hola " + User.Identity.Name + "!", "Index", "Manage", null, new { title = "Manage", @class = "nav-link"})</li>
-        <li class="nav-item"><a class = "nav-link" href="javascript:document.getElementById('logoutForm').submit()">Cerrar Sesión</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="/Manage" title="Manage">
+                    <span class="fa fa-user-circle navbar-icon" aria-hidden="true"></span><span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>@Html.Label(User.Identity.Name, new { @style = "font-weight: bold", @class = "dropdown-item" })</li>
+                    <li class="dropdown-divider"></li>
+                    <li>@Html.ActionLink("Ajustes", "Index", "Manage", null, new { @class = "dropdown-item" })</li>
+                    <li class="dropdown-divider"></li>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Provincias", "Index", "Province", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Municipios", "Index", "Municipality", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Repartos", "Index", "District", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Categorias", "Index", "Category", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("Unidades Tiempo Renta", "Index", "RentTimeUnit", null, new { @class = "dropdown-item" })</li>
+                        <li class="dropdown-divider"></li>
+                        <li class="nav-item">@Html.ActionLink("Administradores", "Index", "Admin", null, new { @class = "dropdown-item" })</li>
+                        <li class="nav-item">@Html.ActionLink("Agentes", "Index", "Agent", null, new { @class = "dropdown-item" })</li>
+                        <li class="nav-item">@Html.ActionLink("Clientes", "Index", "Client", null, new { @class = "dropdown-item" })</li>
+                    }
+                </ul>
+            </li>
+            <li class="nav-item"><a class = "nav-link" href="javascript:document.getElementById('logoutForm').submit()">
+                <span class="fa fa-sign-out-alt navbar-icon" aria-hidden="true"></span>
+            </a></li>
+        </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item">@Html.ActionLink("Registrar", "Register", "Account", null, new { @class = "nav-link" })</li>
-        <li class="nav-item">@Html.ActionLink("Iniciar Sesión", "Login", "Account", null, new { @class = "nav-link" })</li>
+        <li class="nav-item"><a class="nav-link" href="/Account/Register"><span class="fa fa-user-plus navbar-icon" aria-hidden="true"></span></a></li>
+        <li class="nav-item"><a class="nav-link" href="/Account/Login"><span class="fa fa-sign-in-alt navbar-icon" aria-hidden="true"></span></a></li>
     </ul>
 }
