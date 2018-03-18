@@ -8,7 +8,7 @@ using GCRS.Data.Repositories;
 
 namespace GCRS.Services
 {
-    public class SearchService
+    public class SearchService: Abstract.ISearchService
     {
         private RentalOfferRepository _rentalOfferRepo;
         private SellOfferRepository _sellOfferRepo;
