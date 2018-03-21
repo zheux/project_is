@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GCRS.Domain.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace GCRS.Domain
         public Property Property { get; set; }
         public Agent Agent { get; set; }
         public State State { get; set; }
+
+        public ICollection<Tags> Tags { get; set; }
     }
 
     public class SellOffer
@@ -39,5 +42,7 @@ namespace GCRS.Domain
         public Property Property { get; set; }
         public Agent Agent { get; set; }
         public State State { get; set; }
+
+        public ICollection<Tags> Tags { get; set; }
     }
 }
