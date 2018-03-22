@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using GCRS.Web.ViewModels;
 using GCRS.Domain;
 using GCRS.Services;
+using GCRS.Services.ViewModels;
 
 namespace GCRS.Web.Controllers
 {

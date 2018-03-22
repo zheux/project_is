@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchService.cs" />
+    <Compile Include="ViewModels\SearchViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GCRS.Data\GCRS.Data.csproj">
