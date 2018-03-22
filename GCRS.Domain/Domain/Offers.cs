@@ -25,7 +25,7 @@ namespace GCRS.Domain
         public Agent Agent { get; set; }
         public State State { get; set; }
 
-        public ICollection<Tags> Tags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
     }
 
     public class SellOffer
@@ -43,6 +43,6 @@ namespace GCRS.Domain
         public Agent Agent { get; set; }
         public State State { get; set; }
 
-        public ICollection<Tags> Tags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
     }
 }
