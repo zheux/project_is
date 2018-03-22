@@ -38,4 +38,35 @@ namespace GCRS.Web.ViewModels
         public IEnumerable<GCRS.Domain.District> Districts;
         public IEnumerable<GCRS.Domain.Category> Categories;
     }
+
+    public class SellSearchFilterVM
+    {
+        public string Keywords { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public string SelectedProvince { get; set; }
+
+        public string SelectedMunicipality { get; set; }
+
+        public string SelectedDistrict { get; set; }
+
+        public string SelectedCategory { get; set; }
+
+        public int MinimumPrice { get; set; }
+
+        public int MaximumPrice { get; set; }
+    }
+
+    public class SellSearchVM
+    {
+        public SellSearchFilterVM Filters;
+
+        public IEnumerable<GCRS.Domain.SellOffer> FilteredSells;
+
+        public IEnumerable<GCRS.Domain.Province> Provinces;
+        public IEnumerable<GCRS.Domain.Municipality> Municipalities;
+        public IEnumerable<GCRS.Domain.District> Districts;
+        public IEnumerable<GCRS.Domain.Category> Categories;
+    }
 }

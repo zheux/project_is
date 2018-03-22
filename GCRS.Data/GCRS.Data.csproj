@@ -49,6 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Migrations\201803202130385_seed.cs" />
+    <Compile Include="Migrations\201803202130385_seed.Designer.cs">
+      <DependentUpon>201803202130385_seed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Offers\RentalOfferRepository.cs" />
     <Compile Include="Repositories\Offers\SellOfferRepository.cs" />
@@ -72,6 +77,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803202130385_seed.resx">
+      <DependentUpon>201803202130385_seed.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
