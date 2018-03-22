@@ -108,7 +108,7 @@ namespace GCRS.Data.Migrations
 
             context.SaveChanges();
 
-            context.RentalReservations.Add(new RentalReservation() {
+            context.Reservations.Add(new Reservation() {
                 ClientUsername = context.Clients.Single(m => m.Username == "cliente").Username,
                 Client = context.Clients.Single(m => m.Username == "cliente"),
                 RentalOfferId = context.RentalOffers.Single(m => m.Title == "Apartamento").Id,
@@ -117,7 +117,7 @@ namespace GCRS.Data.Migrations
                 DepartureDate = new DateTime(2018, 1, 10, 12, 0, 0)
             });
 
-            context.RentalReservations.Add(new RentalReservation()
+            context.Reservations.Add(new Reservation()
             {
                 ClientUsername = context.Clients.Single(m => m.Username == "cliente").Username,
                 Client = context.Clients.Single(m => m.Username == "cliente"),
@@ -127,7 +127,7 @@ namespace GCRS.Data.Migrations
                 DepartureDate = new DateTime(2018, 1, 30, 12, 0, 0)
             });
 
-            context.RentalReservations.Add(new RentalReservation()
+            context.Reservations.Add(new Reservation()
             {
                 ClientUsername = context.Clients.Single(m => m.Username == "cliente").Username,
                 Client = context.Clients.Single(m => m.Username == "cliente"),
@@ -137,7 +137,7 @@ namespace GCRS.Data.Migrations
                 DepartureDate = new DateTime(2018, 1, 30, 12, 0, 0)
             });
 
-            context.RentalReservations.Add(new RentalReservation()
+            context.Reservations.Add(new Reservation()
             {
                 ClientUsername = context.Clients.Single(m => m.Username == "cliente").Username,
                 Client = context.Clients.Single(m => m.Username == "cliente"),

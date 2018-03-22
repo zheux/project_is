@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GCRS.Domain
 {
-    public class RentalReservation
+    public class Reservation
     {
         [Key, Column(Order = 0), ForeignKey("RentalOffer")]
         public int RentalOfferId { get; set; }
