@@ -29,6 +29,10 @@ namespace GCRS.Data
         public DbSet<SellOffer> SellOffers{ get; set; }
         public DbSet<RentalOffer> RentalOffers { get; set; }
 
+        //Agregaciones 
+        public DbSet<RentalReservation> RentalReservations { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+
         public ApplicationDbContext() : base("name=db")
         {
 

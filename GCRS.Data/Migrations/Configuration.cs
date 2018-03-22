@@ -107,6 +107,47 @@ namespace GCRS.Data.Migrations
             context.RentalOffers.Add(r);
 
             context.SaveChanges();
+
+            context.RentalReservations.Add(new RentalReservation() {
+                ClientUsername = context.Clients.Single(m => m.Username == "cliente").Username,
+                Client = context.Clients.Single(m => m.Username == "cliente"),
+                RentalOfferId = context.RentalOffers.Single(m => m.Title == "Apartamento").Id,
+                RentalOffer = context.RentalOffers.Single(m => m.Title == "Apartamento"),
+                ArrivalDate = new DateTime(2018, 1, 1, 12, 0, 0),
+                DepartureDate = new DateTime(2018, 1, 10, 12, 0, 0)
+            });
+
+            context.RentalReservations.Add(new RentalReservation()
+            {
+                ClientUsername = context.Clients.Single(m => m.Username == "cliente").Username,
+                Client = context.Clients.Single(m => m.Username == "cliente"),
+                RentalOfferId = context.RentalOffers.Single(m => m.Title == "Alquiler Suite Romantic Matanzas").Id,
+                RentalOffer = context.RentalOffers.Single(m => m.Title == "Alquiler Suite Romantic Matanzas"),
+                ArrivalDate = new DateTime(2018, 1, 20, 12, 0, 0),
+                DepartureDate = new DateTime(2018, 1, 30, 12, 0, 0)
+            });
+
+            context.RentalReservations.Add(new RentalReservation()
+            {
+                ClientUsername = context.Clients.Single(m => m.Username == "cliente").Username,
+                Client = context.Clients.Single(m => m.Username == "cliente"),
+                RentalOfferId = context.RentalOffers.Single(m => m.Title == "Casa independiente").Id,
+                RentalOffer = context.RentalOffers.Single(m => m.Title == "Casa independiente"),
+                ArrivalDate = new DateTime(2018, 1, 25, 12, 0, 0),
+                DepartureDate = new DateTime(2018, 1, 30, 12, 0, 0)
+            });
+
+            context.RentalReservations.Add(new RentalReservation()
+            {
+                ClientUsername = context.Clients.Single(m => m.Username == "cliente").Username,
+                Client = context.Clients.Single(m => m.Username == "cliente"),
+                RentalOfferId = context.RentalOffers.Single(m => m.Title == "Hostal Clara").Id,
+                RentalOffer = context.RentalOffers.Single(m => m.Title == "Hostal Clara"),
+                ArrivalDate = new DateTime(2018, 2, 1, 12, 0, 0),
+                DepartureDate = new DateTime(2018, 2, 10, 12, 0, 0)
+            });
+
+            context.SaveChanges();
         }
     }
 }
