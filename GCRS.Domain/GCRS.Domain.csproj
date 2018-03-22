@@ -43,11 +43,12 @@
   <ItemGroup>
     <Compile Include="Domain\Admin.cs" />
     <Compile Include="Domain\Agent.cs" />
-    <Compile Include="Domain\Builders.cs" />
+    <Compile Include="Domain\Purchase.cs" />
     <Compile Include="Domain\Client.cs" />
     <Compile Include="Domain\Offers.cs" />
     <Compile Include="Domain\Property.cs" />
-    <Compile Include="Domain\Tags.cs" />
+    <Compile Include="Domain\RentalReservation.cs" />
+    <Compile Include="Domain\Tag.cs" />
     <Compile Include="IRepositories\Offers\IOfferRepository.cs" />
     <Compile Include="IRepositories\User\IAgentRepository.cs" />
     <Compile Include="IRepositories\User\IAdminRepository.cs" />
