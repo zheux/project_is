@@ -47,9 +47,13 @@ namespace GCRS.Data.Repositories
             using (var context = new ApplicationDbContext())
             {
                 return context.SellOffers.Include("Property")
-                                         .Include("Client")
-                                         .Include("Agent")
-                                         .ToList();
+                                        .Include("Property.Province")
+                                        .Include("Property.Municipality")
+                                        .Include("Property.District")
+                                        .Include("Property.Category")
+                                        .Include("Client")
+                                        .Include("Agent")
+                                        .ToList();
             }
         }
     }

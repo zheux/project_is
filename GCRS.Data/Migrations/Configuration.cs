@@ -148,6 +148,27 @@ namespace GCRS.Data.Migrations
             });
 
             context.SaveChanges();
+
+            context.SellOffers.Add(new SellOffer()
+            {
+                Title = "Apartamento",
+                Description = "Descripcion del apartamento",
+                Price = 5000,
+                Property = testProp,
+                State = State.Published
+            });
+
+
+            context.SellOffers.Add(new SellOffer()
+            {
+                Title = "Casa",
+                Description = "Descripcion de la casa",
+                Price = 20000,
+                Property = testProp2,
+                State = State.Published
+            });
+
+            context.SaveChanges();
         }
     }
 }

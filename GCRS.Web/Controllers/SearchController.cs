@@ -31,7 +31,7 @@ namespace GCRS.Web.Controllers
         public ActionResult Rental()
         {
             return View(new RentalSearchVM() {
-                FilteredRentals = _searchService.SearchRentalOffers(m => m.Id != 0),
+                FilteredRentals = _searchService.SearchRentalOffers(null),
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),
@@ -43,28 +43,36 @@ namespace GCRS.Web.Controllers
         [HttpPost]
         public ActionResult Rental(RentalSearchFilterVM filters)
         {
-            Func<RentalOffer, bool> cond = m => {
-                bool ret = true;
-                if (filters.MaximumPrice < filters.MinimumPrice || m.PricePerRTU > filters.MaximumPrice || filters.MinimumPrice > m.PricePerRTU)
-                    ret = false;
-                if (filters.MaximumPrice == 0 && filters.MinimumPrice == 0)
-                    ret = true;
-                if (filters.Keywords != null && !m.Title.Split().Contains(filters.Keywords))
-                    ret = false;
-                if (filters.SelectedCategory != null && (m.Property.Category == null || m.Property.Category.Name != filters.SelectedCategory))
-                    ret = false;
-                if (filters.SelectedProvince != null && (m.Property.Province == null || m.Property.Province.Name != filters.SelectedProvince))
-                    ret = false;
-                if (filters.SelectedDistrict != null && (m.Property.District == null || m.Property.District.Name != filters.SelectedDistrict))
-                    ret = false;
-                if (filters.SelectedMunicipality != null && (m.Property.Municipality == null || m.Property.Municipality.Name != filters.SelectedMunicipality))
-                    ret = false;
-                return ret;
-            };
-            IEnumerable<RentalOffer> s = _searchService.SearchRentalOffers(cond);
             return View(new RentalSearchVM()
             {
-                FilteredRentals = _searchService.SearchRentalOffers(cond),
+                FilteredRentals = _searchService.SearchRentalOffers(filters),
+                Provinces = _provinceRepo.GetProvinces(),
+                Municipalities = _municipalityRepo.GetMunicipalities(),
+                Districts = _districtRepo.GetDistricts(),
+                Categories = _categoryRepo.GetCategories()
+            });
+        }
+
+        // GET: Sell
+        public ActionResult Sell()
+        {
+            return View(new SellSearchVM()
+            {
+                FilteredSells = _searchService.SearchSellOffers(null),
+                Provinces = _provinceRepo.GetProvinces(),
+                Municipalities = _municipalityRepo.GetMunicipalities(),
+                Districts = _districtRepo.GetDistricts(),
+                Categories = _categoryRepo.GetCategories()
+            });
+        }
+
+        // POST: Sell
+        [HttpPost]
+        public ActionResult Sell(SellSearchFilterVM filters)
+        {
+            return View(new SellSearchVM()
+            {
+                FilteredSells = _searchService.SearchSellOffers(filters),
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),

@@ -8,7 +8,7 @@
         @using (Html.BeginForm("Sell", "Search", FormMethod.Post, new { @class = "pr-0" }))
         {
             <div style="display:flex">
-                <input type="text" class="form-control" placeholder="Buscar alquileres" name="Filters.Keywords" />
+                <input type="text" class="form-control" placeholder="Buscar viviendas en venta" name="Filters.Keywords" />
                 <button type="submit" runat="server"  class="btn btn-primary sharp-border"><span class=" fa fa-search" aria-hidden="true"></span></button>
                 <div class="btn-group" role="group">
                     <div class="dropdown dropdown-lg">
@@ -67,12 +67,6 @@
                                     }
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    @Html.Label("", "Dia de Publicacion", new { @class = "drop-label" })
-                                    @Html.EditorFor(m => m.Filters.Date, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                                </div>
-                            </div>
                             <button type="submit" class="btn btn-primary"><span class="fa fa-search" aria-hidden="true"></span></button>
                         </div>
                     </div>
@@ -92,7 +86,7 @@
 {
     string imgind = (i % 4 + 1).ToString();
     <div class="media deal-li col-md-9 px-0 mx-auto">
-        <img class="align-self-center img-thumbnail deal-li-img ml-2 mt-2 mb-2 mr-3" src="~/Media/SellPhotos/test-image-@(imgind).jpg" alt="Generic placeholder image">
+        <img class="align-self-center img-thumbnail deal-li-img ml-2 mt-2 mb-2 mr-3" src="~/Media/RentalPhotos/test-image-@(imgind).jpg" alt="Generic placeholder image">
         <div class="media-body">
             <h4 class="mt-2 deal-li-title">@offer.Title</h4>
             <div class="price-tag"><span class="price">$@offer.Price</span> 
