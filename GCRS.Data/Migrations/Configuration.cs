@@ -39,6 +39,17 @@ namespace GCRS.Data.Migrations
 
             context.SaveChanges();
 
+            context.Tags.Add(new Tag() { Name = "Wi-fi", TagType = TagType.Rental });
+            context.Tags.Add(new Tag() { Name = "TV Digital", TagType = TagType.Rental });
+            context.Tags.Add(new Tag() { Name = "Lavadora", TagType = TagType.Rental });
+            context.Tags.Add(new Tag() { Name = "Aire Acondicionado", TagType = TagType.Rental });
+
+            context.Tags.Add(new Tag() { Name = "Elevador", TagType = TagType.All});
+
+            context.Tags.Add(new Tag() { Name = "Piscina", TagType = TagType.Sell});
+            context.Tags.Add(new Tag() { Name = "Jardin", TagType = TagType.Sell });
+            context.SaveChanges();
+
             Property testProp = new Property()
             {
                 Direccion = "23 entre 20 y 22",

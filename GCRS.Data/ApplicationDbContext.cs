@@ -33,6 +33,9 @@ namespace GCRS.Data
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
 
+        //Tags
+        public DbSet<Tag> Tags { get; set; }
+
         public ApplicationDbContext() : base("name=db")
         {
 

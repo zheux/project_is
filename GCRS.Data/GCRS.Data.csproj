@@ -49,12 +49,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Migrations\201803232050556_new.cs" />
+    <Compile Include="Migrations\201803232050556_new.Designer.cs">
+      <DependentUpon>201803232050556_new.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Offers\RentalOfferRepository.cs" />
     <Compile Include="Repositories\Offers\PurchaseRepository.cs" />
     <Compile Include="Repositories\Offers\SellOfferRepository.cs" />
     <Compile Include="Repositories\Offers\ReservationRepository.cs" />
+    <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="Repositories\User\AdminRepository.cs" />
     <Compile Include="Repositories\User\AgentRepository.cs" />
     <Compile Include="Repositories\User\ClientRepository.cs" />
@@ -75,6 +80,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803232050556_new.resx">
+      <DependentUpon>201803232050556_new.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
