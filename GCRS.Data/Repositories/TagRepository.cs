@@ -5,7 +5,7 @@ using GCRS.Domain;
 
 namespace GCRS.Data.Repositories
 {
-    class TagRepository: ITagRepository
+    public class TagRepository: ITagRepository
     {
 
         public void AddTag(Tag tag)
