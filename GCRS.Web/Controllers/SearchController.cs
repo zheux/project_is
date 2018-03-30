@@ -66,7 +66,8 @@ namespace GCRS.Web.Controllers
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories()
+                Categories = _categoryRepo.GetCategories(),
+                Tags = _tagRepo.GetTags()
             });
         }
 
@@ -80,7 +81,8 @@ namespace GCRS.Web.Controllers
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories()
+                Categories = _categoryRepo.GetCategories(),
+                Tags = _tagRepo.GetTags()
             });
         }
     }

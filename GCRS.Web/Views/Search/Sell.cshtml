@@ -3,13 +3,13 @@
 
 @model SellSearchVM
 
-<div class="input-group col-md-6" id="adv-search">
-    <div class="dropdown dropdown-lg col-md-12">
-        @using (Html.BeginForm("Sell", "Search", FormMethod.Post, new { @class = "pr-0" }))
+<div id="adv-search">
+    <div class="dropdown dropdown-lg">
+        @using (Html.BeginForm("Sell", "Search", FormMethod.Post))
         {
-            <div style="display:flex">
-                <input type="text" class="form-control" placeholder="Buscar viviendas en venta" name="Filters.Keywords" />
-                <button type="submit" runat="server"  class="btn btn-primary sharp-border"><span class=" fa fa-search" aria-hidden="true"></span></button>
+            <div class="search-bar" style="display:flex">
+                <input type="text" class="form-control" placeholder="Buscar ventas" name="Filters.Keywords" />
+                <button type="submit" id="but1" class="btn btn-primary sharp-border"><span class="fa fa-search" aria-hidden="true"></span></button>
                 <div class="btn-group" role="group">
                     <div class="dropdown dropdown-lg">
                         <button type="button" class="btn btn-default sharp-border dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
@@ -17,22 +17,24 @@
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     @Html.Label("", "Incluir las ubicaciones", new { @class = "drop-label" })
-                                    @{ @*Provincias*@  
-                                    <select class="col-md-12 mb-2 form-control" id="Filters_SelectedProvince" name="Filters.SelectedProvince">
-                                        <option selected disabled hidden>Seleccione una provincia</option>
-                                        @foreach (var x in Model.Provinces)
-                                        {
-                                            @:<option>@x.Name</option>
-                                        }
-                                    </select>
+                                    @{ @*Provincias*@
+                                        <select class="col-md-12 mb-2 form-control" id="Filters_SelectedProvince" name="Filters.SelectedProvince">
+                                            <option selected disabled hidden>Seleccione una provincia</option>
+                                            @foreach (var x in Model.Provinces)
+                                            {
+                                                @:
+                                                <option>@x.Name</option>
+                                    }
+                                        </select>
                                     }
                                     @{ @*Municipios*@
                                         <select class="col-md-12 mb-2 form-control" id="Filters_SelectedMunicipality" name="Filters.SelectedMunicipality">
                                             <option selected disabled hidden>Seleccione un municipio</option>
                                             @foreach (var x in Model.Municipalities)
                                             {
-                                                @:<option>@x.Name</option>
-                                            }
+                                                @:
+                                                <option>@x.Name</option>
+                                        }
                                         </select>
                                     }
                                     @{ @*Repartos*@
@@ -40,8 +42,9 @@
                                             <option selected disabled hidden>Seleccione un reparto</option>
                                             @foreach (var x in Model.Districts)
                                             {
-                                                @:<option>@x.Name</option>
-                                            }
+                                                @:
+                                                <option>@x.Name</option>
+                                        }
                                         </select>
                                     }
                                 </div>
@@ -67,55 +70,67 @@
                                     }
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary"><span class="fa fa-search" aria-hidden="true"></span></button>
+                            <button type="submit" id="but2" class="btn btn-primary"><span class="fa fa-search" aria-hidden="true"></span></button>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="tagColumn">
+                <h6 style="text-align: center; margin-top: 1rem">Incluir las etiquetas:</h6>
+                @for (int ind = 0; ind < Model.Tags.Count(); ind++)
+                {
+                    @:<label class="tag-chkbox row">
+                        @Html.CheckBoxFor(m => m.Filters.SelectedTag[ind]);
+                    @Html.Label(Model.Tags.ElementAt(ind).Name);
+                    @:</label>
+                }
+                <br />
             </div>
         }
     </div>
 </div>
 
-
-@if (Model.FilteredSells.Count() == 0)
-{
-    <div class="text-center mt-4" style="font-weight: bolder">No se encontraron resultados para la búsqueda</div>
-}
-@{int i = 0; }
-@foreach (var offer in Model.FilteredSells)
-{
-    string imgind = (i % 4 + 1).ToString();
-    <div class="media deal-li col-md-9 px-0 mx-auto">
-        <img class="align-self-center img-thumbnail deal-li-img ml-2 mt-2 mb-2 mr-3" src="~/Media/RentalPhotos/test-image-@(imgind).jpg" alt="Generic placeholder image">
-        <div class="media-body">
-            <h4 class="mt-2 deal-li-title">@offer.Title</h4>
-            <div class="price-tag"><span class="price">$@offer.Price</span> 
-            </div>
-            <span>@offer.Description</span>
-            <span class="deal-info">
-                @if (offer.Property.Province != null)
-                {
-                    @offer.Property.Province.Name
-                }
-                @if(offer.Property.Municipality != null)
-                {
-                    @: / 
-                    @offer.Property.Municipality.Name
-                }
-                @if (offer.Property.District != null)
-                {
-                    @: /
-                    @offer.Property.District.Name
-                }
-                <span style="right: 1rem; position:absolute;">
-                    @if (offer.Property.Category != null)
+<div class="search-panel">
+    @if (Model.FilteredSells.Count() == 0)
+    {
+        <div class="text-center mt-4" style="font-weight: bolder">No se encontraron resultados para la búsqueda</div>
+    }
+    @{int i = 0; }
+    @foreach (var offer in Model.FilteredSells)
+    {
+        string imgind = (i % 4 + 1).ToString();
+        <div class="media deal-li col-md-9 px-0 mx-auto">
+            <img class="align-self-center img-thumbnail deal-li-img ml-2 mt-2 mb-2 mr-3" src="~/Media/RentalPhotos/test-image-@(imgind).jpg" alt="Generic placeholder image">
+            <div class="media-body">
+                <h4 class="mt-2 deal-li-title">@offer.Title</h4>
+                <div class="price-tag"><span class="price">$@offer.Price</span></div>
+                <span>@offer.Description</span>
+                <span class="deal-info">
+                    @if (offer.Property.Province != null)
                     {
-                        @offer.Property.Category.Name
+                        @offer.Property.Province.Name
                     }
+                    @if (offer.Property.Municipality != null)
+                    {
+                        @: /
+                        @offer.Property.Municipality.Name
+                    }
+                    @if (offer.Property.District != null)
+                    {
+                        @: /
+                        @offer.Property.District.Name
+                    }
+                    <span style="right: 1rem; position:absolute;">
+                        @if (offer.Property.Category != null)
+                        {
+                            @offer.Property.Category.Name
+                        }
+                    </span>
                 </span>
-            </span>
-            
+
+            </div>
         </div>
-    </div>
-    i++;
-}
+        i++;
+    }
+</div>
