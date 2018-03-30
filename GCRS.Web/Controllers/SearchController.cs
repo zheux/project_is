@@ -16,14 +16,16 @@ namespace GCRS.Web.Controllers
         private IMunicipalityRepository _municipalityRepo;
         private IDistrictRepository _districtRepo;
         private ICategoryRepository _categoryRepo;
+        private ITagRepository _tagRepo;
         private SearchService _searchService;
 
-        public SearchController(IProvinceRepository provinceRepo, IMunicipalityRepository municipalityRepo, IDistrictRepository districtRepo, ICategoryRepository categoryRepo)
+        public SearchController(IProvinceRepository provinceRepo, IMunicipalityRepository municipalityRepo, IDistrictRepository districtRepo, ICategoryRepository categoryRepo, ITagRepository tagRepo)
         {
             _provinceRepo = provinceRepo;
             _municipalityRepo = municipalityRepo;
             _districtRepo = districtRepo;
             _categoryRepo = categoryRepo;
+            _tagRepo = tagRepo;
             _searchService = new SearchService();
         }
 
@@ -35,7 +37,8 @@ namespace GCRS.Web.Controllers
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories()
+                Categories = _categoryRepo.GetCategories(),
+                Tags = _tagRepo.GetTags()
             });
         }
 
@@ -49,7 +52,8 @@ namespace GCRS.Web.Controllers
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories()
+                Categories = _categoryRepo.GetCategories(),
+                Tags = _tagRepo.GetTags()
             });
         }
 
