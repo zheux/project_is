@@ -10,18 +10,18 @@ namespace GCRS.Web.Controllers
 {
     public class ClientController : Controller
     {
-        private IClientRepository _clientRepo;
+        private IUnitOfWork _unitOfWork;
 
-        public ClientController(IClientRepository ClientRepository)
+        public ClientController(IUnitOfWork UnitOfWork)
             :base()
         {
-            _clientRepo = ClientRepository;
+            _unitOfWork = UnitOfWork;
         }
 
         // GET: Client
         public ActionResult Index()
         {
-            return View(_clientRepo.GetClients());
+            return View(_unitOfWork.Repository<Client>().ToList());
         }
     }
 }

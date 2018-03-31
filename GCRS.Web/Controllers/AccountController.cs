@@ -12,13 +12,13 @@ namespace GCRS.Web.Controllers
     public class AccountController : Controller
     {
         private IAuthProvider _authProvider;
-        private IClientRepository _clientRepo;
+        private IUnitOfWork _unitOfWork;
 
-        public AccountController(IAuthProvider AuthProvider, IClientRepository ClientRepository)
+        public AccountController(IAuthProvider AuthProvider, IUnitOfWork UnitOfWork)
             : base()
         {
             _authProvider = AuthProvider;
-            _clientRepo = ClientRepository;
+            _unitOfWork = UnitOfWork;
         }
 
         //GET: Account/Login
@@ -63,10 +63,11 @@ namespace GCRS.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(_clientRepo.FindClient(m => m.Username == modelo.Username) == null)
+                if(_unitOfWork.Repository<Client>().SingleOrDefault(m => m.Username == modelo.Username) == null)
                 {
                     Client nuevo_cliente = new Client { Username = modelo.Username, Email = modelo.Email, Password = modelo.Password };
-                    _clientRepo.AddClient(nuevo_cliente);
+                    _unitOfWork.Repository<Client>().Add(nuevo_cliente);
+                    _unitOfWork.SaveChanges();
                     _authProvider.Authenticate(modelo.Username, modelo.Password, false);
                     return RedirectToAction("Index", "Home");
                 }

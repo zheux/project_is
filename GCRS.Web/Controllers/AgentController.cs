@@ -9,17 +9,17 @@ namespace GCRS.Web.Controllers
 {
     public class AgentController : Controller
     {
-        private IAgentRepository _agentRepo;
+        private IUnitOfWork _unitOfWork;
         
-        public AgentController(IAgentRepository AgentRepository)
+        public AgentController(IUnitOfWork UnitOfWork)
         {
-            _agentRepo = AgentRepository;
+            _unitOfWork = UnitOfWork;
         }
 
         // GET: Agent
         public ActionResult Index()
         {
-            return View(_agentRepo.GetAgents());
+            return View(_unitOfWork.Repository<Agent>().ToList());
         }
 
     }

@@ -9,17 +9,17 @@ namespace GCRS.Web.Controllers
 {
     public class DistrictController : Controller
     {
-        private IDistrictRepository _districtRepo;
+        private IUnitOfWork _unitOfWork;
         
-        public DistrictController(IDistrictRepository DistrictRepository)
+        public DistrictController(IUnitOfWork UnitOfWork)
         {
-            _districtRepo = DistrictRepository;
+            _unitOfWork = UnitOfWork;
         }
 
         // GET: District
         public ActionResult Index()
         {
-            return View(_districtRepo.GetDistricts());
+            return View(_unitOfWork.Repository<District>().ToList());
         }
 
 
@@ -41,7 +41,8 @@ namespace GCRS.Web.Controllers
             }
             else
             {
-                _districtRepo.AddDistrict(new Domain.District() { Name = name });
+                _unitOfWork.Repository<District>().Add(new Domain.District() { Name = name });
+                _unitOfWork.SaveChanges();
             }
             return RedirectToAction("Index");
         }
@@ -50,7 +51,8 @@ namespace GCRS.Web.Controllers
         // GET: District/Delete/5
         public ActionResult Delete(int id)
         {
-            _districtRepo.RemoveDistrict(id);
+            _unitOfWork.Repository<District>().Remove(_unitOfWork.Repository<District>().SingleOrDefault(m => m.Id == id));
+            _unitOfWork.SaveChanges();
             return RedirectToAction("Index");
         }
     }

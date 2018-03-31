@@ -11,18 +11,12 @@ namespace GCRS.Web.Controllers
 {
     public class SearchController : Controller
     {
-        private IProvinceRepository _provinceRepo;
-        private IMunicipalityRepository _municipalityRepo;
-        private IDistrictRepository _districtRepo;
-        private ICategoryRepository _categoryRepo;
+        private IUnitOfWork _unitOfWork;
         private SearchService _searchService;
 
-        public SearchController(IProvinceRepository provinceRepo, IMunicipalityRepository municipalityRepo, IDistrictRepository districtRepo, ICategoryRepository categoryRepo)
+        public SearchController(IUnitOfWork UnitOfWork)
         {
-            _provinceRepo = provinceRepo;
-            _municipalityRepo = municipalityRepo;
-            _districtRepo = districtRepo;
-            _categoryRepo = categoryRepo;
+            _unitOfWork = UnitOfWork;
             _searchService = new SearchService();
         }
 
@@ -31,10 +25,10 @@ namespace GCRS.Web.Controllers
         {
             return View(new RentalSearchVM() {
                 FilteredRentals = _searchService.SearchRentalOffers(m => m.Id != 0),
-                Provinces = _provinceRepo.GetProvinces(),
-                Municipalities = _municipalityRepo.GetMunicipalities(),
-                Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories()
+                Provinces = _unitOfWork.Repository<Province>().ToList(),
+                Municipalities = _unitOfWork.Repository<Municipality>().ToList(),
+                Districts = _unitOfWork.Repository<District>().ToList(),
+                Categories = _unitOfWork.Repository<Category>().ToList()
             });
         }
 
@@ -64,10 +58,10 @@ namespace GCRS.Web.Controllers
             return View(new RentalSearchVM()
             {
                 FilteredRentals = _searchService.SearchRentalOffers(cond),
-                Provinces = _provinceRepo.GetProvinces(),
-                Municipalities = _municipalityRepo.GetMunicipalities(),
-                Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories()
+                Provinces = _unitOfWork.Repository<Province>().ToList(),
+                Municipalities = _unitOfWork.Repository<Municipality>().ToList(),
+                Districts = _unitOfWork.Repository<District>().ToList(),
+                Categories = _unitOfWork.Repository<Category>().ToList()
             });
         }
     }

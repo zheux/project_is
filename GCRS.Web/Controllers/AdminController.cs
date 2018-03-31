@@ -9,17 +9,17 @@ namespace GCRS.Web.Controllers
 {
     public class AdminController : Controller
     {
-        private IAdminRepository _adminRepo;
+        private IUnitOfWork _unitOfWork;
         
-        public AdminController(IAdminRepository AdminRepository)
+        public AdminController(IUnitOfWork UnitOfWork)
         {
-            _adminRepo = AdminRepository;
+            _unitOfWork = UnitOfWork;
         }
 
         // GET: Admin
         public ActionResult Index()
         {
-            return View(_adminRepo.GetAdmins());
+            return View(_unitOfWork.Repository<Admin>().ToList());
         }
 
     }

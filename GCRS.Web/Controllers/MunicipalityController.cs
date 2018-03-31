@@ -9,17 +9,17 @@ namespace GCRS.Web.Controllers
 {
     public class MunicipalityController : Controller
     {
-        private IMunicipalityRepository _municipalityRepo;
+        private IUnitOfWork _unitOfWork;
         
-        public MunicipalityController(IMunicipalityRepository MunicipalityRepository)
+        public MunicipalityController(IUnitOfWork UnitOfWork)
         {
-            _municipalityRepo = MunicipalityRepository;
+            _unitOfWork = UnitOfWork;
         }
 
         // GET: Municipios
         public ActionResult Index()
         {
-            return View(_municipalityRepo.GetMunicipalities());
+            return View(_unitOfWork.Repository<Municipality>().ToList());
         }
 
 
@@ -41,7 +41,8 @@ namespace GCRS.Web.Controllers
             }
             else
             {
-                _municipalityRepo.AddMunicipality(new Domain.Municipality() { Name = name });
+                _unitOfWork.Repository<Municipality>().Add(new Domain.Municipality() { Name = name });
+                _unitOfWork.SaveChanges();
             }
             return RedirectToAction("Index");
         }
@@ -50,7 +51,8 @@ namespace GCRS.Web.Controllers
         // GET: Nomenclador/Delete/5
         public ActionResult Delete(int id)
         {
-            _municipalityRepo.RemoveMunicipality(id);
+            _unitOfWork.Repository<Municipality>().Remove(_unitOfWork.Repository<Municipality>().SingleOrDefault(m => m.Id == id));
+            _unitOfWork.SaveChanges();
             return RedirectToAction("Index");
         }
     }
