@@ -1,6 +1,7 @@
 namespace GCRS.Data.Migrations
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -39,16 +40,24 @@ namespace GCRS.Data.Migrations
 
             context.SaveChanges();
 
-            context.Tags.Add(new Tag() { Name = "Wi-fi", TagType = TagType.Rental });
-            context.Tags.Add(new Tag() { Name = "TV Digital", TagType = TagType.Rental });
-            context.Tags.Add(new Tag() { Name = "Lavadora", TagType = TagType.Rental });
-            context.Tags.Add(new Tag() { Name = "Aire Acondicionado", TagType = TagType.Rental });
+            if(context.Tags.SingleOrDefault(m => m.Name == "Wi-fi") == null)
+                context.Tags.Add(new Tag() { Name = "Wi-fi", TagType = TagType.Rental });
+            if(context.Tags.SingleOrDefault(m => m.Name == "TV Digital") == null)
+                context.Tags.Add(new Tag() { Name = "TV Digital", TagType = TagType.Rental });
+            if(context.Tags.SingleOrDefault(m => m.Name == "Lavadora") == null)
+                context.Tags.Add(new Tag() { Name = "Lavadora", TagType = TagType.Rental });
+            if(context.Tags.SingleOrDefault(m => m.Name == "Aire Acondicionado") == null)
+                context.Tags.Add(new Tag() { Name = "Aire Acondicionado", TagType = TagType.Rental });
 
-            context.Tags.Add(new Tag() { Name = "Elevador", TagType = TagType.All});
+            if(context.Tags.SingleOrDefault(m => m.Name == "Elevador") == null)
+                context.Tags.Add(new Tag() { Name = "Elevador", TagType = TagType.All});
 
-            context.Tags.Add(new Tag() { Name = "Piscina", TagType = TagType.Sell});
-            context.Tags.Add(new Tag() { Name = "Jardin", TagType = TagType.Sell });
+            if(context.Tags.SingleOrDefault(m => m.Name == "Piscina") == null)
+                context.Tags.Add(new Tag() { Name = "Piscina", TagType = TagType.Sell});
+            if(context.Tags.SingleOrDefault(m => m.Name == "Jardin") == null)
+                context.Tags.Add(new Tag() { Name = "Jardin", TagType = TagType.Sell });
             context.SaveChanges();
+
 
             Property testProp = new Property()
             {
@@ -68,8 +77,10 @@ namespace GCRS.Data.Migrations
                 RoomsCount = 1
             };
 
-            context.Properties.Add(testProp);
-            context.Properties.Add(testProp2);
+            if(context.Properties.SingleOrDefault(m => m.Direccion == testProp.Direccion) == null)
+                context.Properties.Add(testProp);
+            if(context.Properties.SingleOrDefault(m => m.Direccion == testProp2.Direccion) == null)
+                context.Properties.Add(testProp2);
             context.SaveChanges();
 
             RentalOffer o = new RentalOffer()
@@ -79,7 +90,12 @@ namespace GCRS.Data.Migrations
                 PricePerRTU = 80,
                 RTU = context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche"),
                 Property = testProp,
-                State = OfferState.Published
+                State = OfferState.Published,
+                Tags = new List<Tag>()
+                {
+                    context.Tags.SingleOrDefault(m => m.Name == "Wi-fi"),
+                    context.Tags.SingleOrDefault(t => t.Name == "Lavadora")
+                }
             };
 
             RentalOffer p = new RentalOffer()
@@ -89,7 +105,12 @@ namespace GCRS.Data.Migrations
                 PricePerRTU = 50,
                 RTU = context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche"),
                 Property = testProp,
-                State = OfferState.Published
+                State = OfferState.Published,
+                Tags = new List<Tag>()
+                {
+                    context.Tags.SingleOrDefault(m => m.Name == "Wi-fi"),
+                    context.Tags.SingleOrDefault(t => t.Name == "Elevador")
+                }
             };
 
             RentalOffer q = new RentalOffer()
@@ -99,7 +120,12 @@ namespace GCRS.Data.Migrations
                 PricePerRTU = 120,
                 RTU = context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche"),
                 Property = testProp2,
-                State = OfferState.Published
+                State = OfferState.Published,
+                Tags = new List<Tag>()
+                {
+                    context.Tags.SingleOrDefault(m => m.Name == "Aire Acondicionado"),
+                    context.Tags.SingleOrDefault(t => t.Name == "Lavadora")
+                }
             };
 
             RentalOffer r = new RentalOffer()
@@ -109,13 +135,21 @@ namespace GCRS.Data.Migrations
                 PricePerRTU = 160,
                 RTU = context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche"),
                 Property = testProp2,
-                State = OfferState.Published
+                State = OfferState.Published,
+                Tags = new List<Tag>()
+                {
+                    context.Tags.SingleOrDefault(m => m.Name == "TV Digital"),
+                    context.Tags.SingleOrDefault(t => t.Name == "Wi-fi")
+                }
             };
-
-            context.RentalOffers.Add(o);
-            context.RentalOffers.Add(p);
-            context.RentalOffers.Add(q);
-            context.RentalOffers.Add(r);
+            if (context.RentalOffers.SingleOrDefault(m => m.Title == o.Title) == null)
+                context.RentalOffers.Add(o);
+            if (context.RentalOffers.SingleOrDefault(m => m.Title == p.Title) == null)
+                context.RentalOffers.Add(p);
+            if (context.RentalOffers.SingleOrDefault(m => m.Title == q.Title) == null)
+                context.RentalOffers.Add(q);
+            if (context.RentalOffers.SingleOrDefault(m => m.Title == r.Title) == null)
+                context.RentalOffers.Add(r);
 
             context.SaveChanges();
 
@@ -166,7 +200,11 @@ namespace GCRS.Data.Migrations
                 Description = "Descripcion del apartamento",
                 Price = 5000,
                 Property = testProp,
-                State = OfferState.Published
+                State = OfferState.Published,
+                Tags = new List<Tag>()
+                {
+                    context.Tags.SingleOrDefault(t => t.Name == "Elevador")
+                }
             });
 
 
@@ -176,7 +214,12 @@ namespace GCRS.Data.Migrations
                 Description = "Descripcion de la casa",
                 Price = 20000,
                 Property = testProp2,
-                State = OfferState.Published
+                State = OfferState.Published,
+                Tags = new List<Tag>()
+                {
+                    context.Tags.SingleOrDefault(m => m.Name == "Jardin"),
+                    context.Tags.SingleOrDefault(t => t.Name == "Piscina")
+                }
             });
 
             context.SaveChanges();
