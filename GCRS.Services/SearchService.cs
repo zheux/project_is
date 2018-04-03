@@ -23,7 +23,7 @@ namespace GCRS.Services
             _purchaseRepository = new PurchaseRepository();
         }
 
-        public IEnumerable<RentalOffer> SearchRentalOffers(ViewModels.RentalSearchFilterVM filters)
+    public IEnumerable<RentalOffer> SearchRentalOffers(ViewModels.RentalSearchFilterVM filters, IList<Tag> TagList)
         {
             Func<RentalOffer, bool> cond;
             if (filters != null)
@@ -53,18 +53,23 @@ namespace GCRS.Services
                         if (reservation.ArrivalDate < filters.DepartureDate && reservation.DepartureDate > filters.ArrivalDate)
                             ret = false;
                     }
+                    for (int i = 0; i < filters.SelectedTag.Count(); i++)
+                    {
+                        if (filters.SelectedTag[i] && m.Tags.SingleOrDefault(t => t.Name == TagList[i].Name) == null)
+                            ret = false;
+                    }
                     return ret;
                 };
             }
             else
                 cond = m => m.Id != -1;
             return _rentalOfferRepo.GetOffers()
-                    .Where(m => m.State == State.Published)
+                    .Where(m => m.State == OfferState.Published)
                     .Where(cond)
                     .ToList();
         }
 
-        public IEnumerable<SellOffer> SearchSellOffers(ViewModels.SellSearchFilterVM filters)
+        public IEnumerable<SellOffer> SearchSellOffers(ViewModels.SellSearchFilterVM filters, IList<Tag> TagList)
         {
             Func<SellOffer, bool> cond;
             if (filters != null)
@@ -86,13 +91,18 @@ namespace GCRS.Services
                         ret = false;
                     if (filters.SelectedMunicipality != null && (m.Property.Municipality == null || m.Property.Municipality.Name != filters.SelectedMunicipality))
                         ret = false;
+                    for (int i = 0; i < filters.SelectedTag.Count(); i++)
+                    {
+                        if (filters.SelectedTag[i] && m.Tags.SingleOrDefault(t => t.Name == TagList[i].Name) == null)
+                            ret = false;
+                    }
                     return ret;
                 };
             }
             else
                 cond = m => m.Id != -1;
             return _sellOfferRepo.GetOffers()
-                    .Where(m => m.State == State.Published)
+                    .Where(m => m.State == OfferState.Published)
                     .Where(cond)
                     .ToList();
         }

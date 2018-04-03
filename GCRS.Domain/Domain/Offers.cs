@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GCRS.Domain
 {
-    public enum State { Requested, Draft, Published, Paid, Canceled};
+    public enum OfferState { Published, Paid, Canceled};
 
     public class RentalOffer
     {
@@ -22,7 +22,7 @@ namespace GCRS.Domain
         public Client Client { get; set; }
         public Property Property { get; set; }
         public Agent Agent { get; set; }
-        public State State { get; set; }
+        public OfferState State { get; set; }
 
         public ICollection<Tag> Tags { get; set; }
     }
@@ -40,7 +40,7 @@ namespace GCRS.Domain
         public Client Client { get; set; }
         public Property Property { get; set; }
         public Agent Agent { get; set; }
-        public State State { get; set; }
+        public OfferState State { get; set; }
 
         public ICollection<Tag> Tags { get; set; }
     }

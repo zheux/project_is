@@ -33,7 +33,7 @@ namespace GCRS.Web.Controllers
         public ActionResult Rental()
         {
             return View(new RentalSearchVM() {
-                FilteredRentals = _searchService.SearchRentalOffers(null),
+                FilteredRentals = _searchService.SearchRentalOffers(null, _tagRepo.GetTags().ToList()),
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),
@@ -48,7 +48,7 @@ namespace GCRS.Web.Controllers
         {
             return View(new RentalSearchVM()
             {
-                FilteredRentals = _searchService.SearchRentalOffers(filters),
+                FilteredRentals = _searchService.SearchRentalOffers(filters, _tagRepo.GetTags().ToList()),
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),
@@ -62,7 +62,7 @@ namespace GCRS.Web.Controllers
         {
             return View(new SellSearchVM()
             {
-                FilteredSells = _searchService.SearchSellOffers(null),
+                FilteredSells = _searchService.SearchSellOffers(null, _tagRepo.GetTags().ToList()),
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),
@@ -77,7 +77,7 @@ namespace GCRS.Web.Controllers
         {
             return View(new SellSearchVM()
             {
-                FilteredSells = _searchService.SearchSellOffers(filters),
+                FilteredSells = _searchService.SearchSellOffers(filters, _tagRepo.GetTags().ToList()),
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),

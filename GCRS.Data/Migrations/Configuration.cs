@@ -79,7 +79,7 @@ namespace GCRS.Data.Migrations
                 PricePerRTU = 80,
                 RTU = context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche"),
                 Property = testProp,
-                State = State.Published
+                State = OfferState.Published
             };
 
             RentalOffer p = new RentalOffer()
@@ -89,7 +89,7 @@ namespace GCRS.Data.Migrations
                 PricePerRTU = 50,
                 RTU = context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche"),
                 Property = testProp,
-                State = State.Published
+                State = OfferState.Published
             };
 
             RentalOffer q = new RentalOffer()
@@ -99,7 +99,7 @@ namespace GCRS.Data.Migrations
                 PricePerRTU = 120,
                 RTU = context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche"),
                 Property = testProp2,
-                State = State.Published
+                State = OfferState.Published
             };
 
             RentalOffer r = new RentalOffer()
@@ -109,7 +109,7 @@ namespace GCRS.Data.Migrations
                 PricePerRTU = 160,
                 RTU = context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche"),
                 Property = testProp2,
-                State = State.Published
+                State = OfferState.Published
             };
 
             context.RentalOffers.Add(o);
@@ -166,7 +166,7 @@ namespace GCRS.Data.Migrations
                 Description = "Descripcion del apartamento",
                 Price = 5000,
                 Property = testProp,
-                State = State.Published
+                State = OfferState.Published
             });
 
 
@@ -176,7 +176,7 @@ namespace GCRS.Data.Migrations
                 Description = "Descripcion de la casa",
                 Price = 20000,
                 Property = testProp2,
-                State = State.Published
+                State = OfferState.Published
             });
 
             context.SaveChanges();
