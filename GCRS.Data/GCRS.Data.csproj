@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ValueObjects\PropertyRepository.cs" />
     <Compile Include="Repositories\Offers\RentalOfferRepository.cs" />
     <Compile Include="Repositories\Offers\PurchaseRepository.cs" />
     <Compile Include="Repositories\Offers\SellOfferRepository.cs" />
