@@ -29,7 +29,7 @@ namespace GCRS.Web
             container.RegisterType<IDistrictRepository, DistrictRepository>();
             container.RegisterType<ICategoryRepository, CategoryRepository>();
             container.RegisterType<IRentTimeUnitRepository, RentTimeUnitRepository>();
-
+            container.RegisterType<ITagRepository, TagRepository>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

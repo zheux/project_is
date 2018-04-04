@@ -1,0 +1,29 @@
+﻿@model IEnumerable<GCRS.Domain.Tag>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Tags</h2>
+@Html.ActionLink("Add", "AddTag")
+<br />
+<table class="table">
+    @*Listar Tags*@
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.Encode(item.Name)
+            </td>
+            <td>
+                @Html.Encode(item.TagType)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

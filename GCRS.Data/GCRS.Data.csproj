@@ -59,7 +59,7 @@
     <Compile Include="Repositories\Offers\PurchaseRepository.cs" />
     <Compile Include="Repositories\Offers\SellOfferRepository.cs" />
     <Compile Include="Repositories\Offers\ReservationRepository.cs" />
-    <Compile Include="Repositories\TagRepository.cs" />
+    <Compile Include="Repositories\ValueObjects\TagRepository.cs" />
     <Compile Include="Repositories\User\AdminRepository.cs" />
     <Compile Include="Repositories\User\AgentRepository.cs" />
     <Compile Include="Repositories\User\ClientRepository.cs" />
