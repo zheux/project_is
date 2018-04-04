@@ -232,10 +232,9 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Search\Sell.cshtml" />
+    <Content Include="Views\OfferRequest\CreateRequest.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\OfferRequest\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include="App_Data\Cuba\cuba-latest.osm.pbf" />
