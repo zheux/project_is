@@ -233,6 +233,8 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Search\Sell.cshtml" />
     <Content Include="Views\OfferRequest\CreateRequest.cshtml" />
+    <Content Include="Views\OfferRequest\Index.cshtml" />
+    <Content Include="Views\Shared\_UserTitlePartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

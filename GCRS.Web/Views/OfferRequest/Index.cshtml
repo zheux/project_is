@@ -1,0 +1,70 @@
+﻿@model IEnumerable<GCRS.Domain.OfferRequest>
+
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="profile-sidebar col-sm-3">
+        @Html.Partial("_UserTitlePartial")
+
+        <div class="profile-usermenu">
+            <ul class="nav">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user"></i>
+                        Perfil
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#">
+                        <i class="fa fa-home"></i>
+                        Solicitudes
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="profile-content">
+            <table class="table">
+                <tr>
+                    <th>ID de la Solicitud</th>
+                    <th>Nombre del Cliente</th>
+                    <th>Fecha de Solicitud</th>
+                    <th>Estado</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.Encode(item.Id)
+                        </td>
+                        <td>
+                            @Html.Encode(item.ClientUsername)
+                        </td>
+                        <td>
+                            @Html.Encode(item.RequestedDate)
+                        </td>
+                        <td>
+                            @Html.Encode(item.State)
+                        </td>
+                        <td>
+                            @if (item.State == GCRS.Domain.RequestState.Requested)
+                            {
+                                @Html.ActionLink("Aceptar", "AcceptRequest", new { id = item.Id })
+                            }
+                            else if (item.State == GCRS.Domain.RequestState.Draft)
+                            {
+                                @Html.ActionLink("Eliminar", "RemoveRequest", new { id = item.Id })
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
