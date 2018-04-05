@@ -16,14 +16,16 @@ namespace GCRS.Web.Controllers
         private IMunicipalityRepository _municipalityRepo;
         private IDistrictRepository _districtRepo;
         private ICategoryRepository _categoryRepo;
+        private ITagRepository _tagRepo;
         private SearchService _searchService;
 
-        public SearchController(IProvinceRepository provinceRepo, IMunicipalityRepository municipalityRepo, IDistrictRepository districtRepo, ICategoryRepository categoryRepo)
+        public SearchController(IProvinceRepository provinceRepo, IMunicipalityRepository municipalityRepo, IDistrictRepository districtRepo, ICategoryRepository categoryRepo, ITagRepository tagRepo)
         {
             _provinceRepo = provinceRepo;
             _municipalityRepo = municipalityRepo;
             _districtRepo = districtRepo;
             _categoryRepo = categoryRepo;
+            _tagRepo = tagRepo;
             _searchService = new SearchService();
         }
 
@@ -31,11 +33,12 @@ namespace GCRS.Web.Controllers
         public ActionResult Rental()
         {
             return View(new RentalSearchVM() {
-                FilteredRentals = _searchService.SearchRentalOffers(null),
+                FilteredRentals = _searchService.SearchRentalOffers(null, _tagRepo.GetTags().ToList()),
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories()
+                Categories = _categoryRepo.GetCategories(),
+                Tags = _tagRepo.GetTags()
             });
         }
 
@@ -45,11 +48,12 @@ namespace GCRS.Web.Controllers
         {
             return View(new RentalSearchVM()
             {
-                FilteredRentals = _searchService.SearchRentalOffers(filters),
+                FilteredRentals = _searchService.SearchRentalOffers(filters, _tagRepo.GetTags().ToList()),
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories()
+                Categories = _categoryRepo.GetCategories(),
+                Tags = _tagRepo.GetTags()
             });
         }
 
@@ -58,11 +62,12 @@ namespace GCRS.Web.Controllers
         {
             return View(new SellSearchVM()
             {
-                FilteredSells = _searchService.SearchSellOffers(null),
+                FilteredSells = _searchService.SearchSellOffers(null, _tagRepo.GetTags().ToList()),
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories()
+                Categories = _categoryRepo.GetCategories(),
+                Tags = _tagRepo.GetTags()
             });
         }
 
@@ -72,11 +77,12 @@ namespace GCRS.Web.Controllers
         {
             return View(new SellSearchVM()
             {
-                FilteredSells = _searchService.SearchSellOffers(filters),
+                FilteredSells = _searchService.SearchSellOffers(filters, _tagRepo.GetTags().ToList()),
                 Provinces = _provinceRepo.GetProvinces(),
                 Municipalities = _municipalityRepo.GetMunicipalities(),
                 Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories()
+                Categories = _categoryRepo.GetCategories(),
+                Tags = _tagRepo.GetTags()
             });
         }
     }

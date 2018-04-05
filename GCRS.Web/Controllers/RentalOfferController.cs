@@ -74,7 +74,7 @@ namespace GCRS.Web.Controllers
 
             _RentalOfferRepo.AddOffer(new Domain.RentalOffer() { Agent = Offer.Agent, Tags = Offer.Tags, PropertyId = Offer.PropertyId,
                                 ClientUserName = Offer.ClientUserName, Comission = 100, Description = Offer.Description, PricePerRTU = Offer.PricePerRTU,
-                                State = State.Published, Title = Offer.Title, RTU = _rtuRepo.FindRentTimeUnit(m => m.Name == "Noche")});
+                                State = OfferState.Published, Title = Offer.Title, RTU = _rtuRepo.FindRentTimeUnit(m => m.Name == "Noche")});
             return RedirectToAction("Index");
         }
 

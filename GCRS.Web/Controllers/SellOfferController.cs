@@ -70,7 +70,7 @@ namespace GCRS.Web.Controllers
 
             _SellOfferRepo.AddOffer(new Domain.SellOffer() { Agent = Offer.Agent, Tags = Offer.Tags, PropertyId = Offer.PropertyId,
                                 ClientUserName = Offer.ClientUserName, Comission = 100, Description = Offer.Description, Price = Offer.Price,
-                                State = State.Published, Title = Offer.Title});
+                                State = OfferState.Published, Title = Offer.Title});
             return RedirectToAction("Index");
         }
 

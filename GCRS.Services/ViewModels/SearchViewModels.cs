@@ -19,9 +19,11 @@ namespace GCRS.Services.ViewModels
 
         public string SelectedCategory { get; set; }
 
-        public int MinimumPrice { get; set; }
+        public int? MinimumPrice { get; set; }
 
-        public int MaximumPrice { get; set; }
+        public int? MaximumPrice { get; set; }
+
+        public IList<bool> SelectedTag { get; set; }
     }
 
     public class RentalSearchVM
@@ -34,6 +36,7 @@ namespace GCRS.Services.ViewModels
         public IEnumerable<GCRS.Domain.Municipality> Municipalities;
         public IEnumerable<GCRS.Domain.District> Districts;
         public IEnumerable<GCRS.Domain.Category> Categories;
+        public IEnumerable<GCRS.Domain.Tag> Tags;
     }
 
     public class SellSearchFilterVM
@@ -53,6 +56,8 @@ namespace GCRS.Services.ViewModels
         public int MinimumPrice { get; set; }
 
         public int MaximumPrice { get; set; }
+
+        public IList<bool> SelectedTag { get; set; }
     }
 
     public class SellSearchVM
@@ -65,5 +70,6 @@ namespace GCRS.Services.ViewModels
         public IEnumerable<GCRS.Domain.Municipality> Municipalities;
         public IEnumerable<GCRS.Domain.District> Districts;
         public IEnumerable<GCRS.Domain.Category> Categories;
+        public IEnumerable<GCRS.Domain.Tag> Tags;
     }
 }

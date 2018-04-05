@@ -53,6 +53,7 @@ namespace GCRS.Data.Repositories
                                         .Include("Property.Category")
                                         .Include("Client")
                                         .Include("Agent")
+                                        .Include("Tags")
                                         .ToList();
             }
         }

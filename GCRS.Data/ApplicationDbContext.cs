@@ -36,6 +36,9 @@ namespace GCRS.Data
         //Tags
         public DbSet<Tag> Tags { get; set; }
 
+        //Workflow
+        public DbSet<OfferRequest> OfferRequests { get; set; }
+
         public ApplicationDbContext() : base("name=db")
         {
 

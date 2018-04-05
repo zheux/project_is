@@ -48,7 +48,9 @@
     <Compile Include="Domain\Offers.cs" />
     <Compile Include="Domain\Property.cs" />
     <Compile Include="Domain\Reservation.cs" />
+    <Compile Include="Domain\OfferRequest.cs" />
     <Compile Include="Domain\Tag.cs" />
+    <Compile Include="IRepositories\Offers\IOfferRequestRepository.cs" />
     <Compile Include="IRepositories\ValueObjects\IPropertyRepository.cs" />
     <Compile Include="IRepositories\ValueObjects\ITagRepository.cs" />
     <Compile Include="IRepositories\Offers\IReservationRepository.cs" />
