@@ -5,21 +5,18 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Security.Principal;
-using GCRS.Data.Repositories;
+using GCRS.Data;
+using GCRS.Domain;
 
 namespace GCRS.Web
 {
     public class Global : System.Web.HttpApplication
     {
-        ClientRepository _clientRepo;
-        AdminRepository _adminRepo;
-        AgentRepository _agentRepo;
+        UnitOfWork unitOfWork;
 
         public Global(): base()
         {
-            _clientRepo = new ClientRepository();
-            _adminRepo = new AdminRepository();
-            _agentRepo = new AgentRepository();
+            unitOfWork = new UnitOfWork();
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
@@ -38,11 +35,11 @@ namespace GCRS.Web
                         string[] roles = { "" };
                         var curUser = HttpContext.Current.User.Identity;
 
-                        if (_adminRepo.FindAdmin(a => a.Username == curUser.Name) != null)
+                        if (unitOfWork.Repository<Admin>().SingleOrDefault(a => a.Username == curUser.Name) != null)
                             roles[0] = "admin";
-                        else if (_agentRepo.FindAgent(a => a.Username == curUser.Name) != null)
+                        else if (unitOfWork.Repository<Agent>().SingleOrDefault(a => a.Username == curUser.Name) != null)
                             roles[0] = "agent";
-                        else if (_clientRepo.FindClient(c => c.Username == curUser.Name) != null)
+                        else if (unitOfWork.Repository<Client>().SingleOrDefault(c => c.Username == curUser.Name) != null)
                             roles[0] = "client";
 
                         HttpContext.Current.User = new GenericPrincipal(id, roles);

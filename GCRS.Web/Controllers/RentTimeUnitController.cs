@@ -9,17 +9,17 @@ namespace GCRS.Web.Controllers
 {
     public class RentTimeUnitController : Controller
     {
-        private IRentTimeUnitRepository _rentTimeUnitRepo;
+        private IUnitOfWork unitOfWork;
         
-        public RentTimeUnitController(IRentTimeUnitRepository RentTimeUnitRepository)
+        public RentTimeUnitController(IUnitOfWork UnitOfWork)
         {
-            _rentTimeUnitRepo= RentTimeUnitRepository;
+            unitOfWork = UnitOfWork;
         }
 
         // GET: UnidadesTiempoRenta
         public ActionResult Index()
         {
-            return View(_rentTimeUnitRepo.GetRentTimeUnits());
+            return View(unitOfWork.Repository<RentTimeUnit>().ToList());
         }
 
 
@@ -41,7 +41,8 @@ namespace GCRS.Web.Controllers
             }
             else
             {
-                _rentTimeUnitRepo.AddRentTimeUnit(new Domain.RentTimeUnit() { Name = name });
+                unitOfWork.Repository<RentTimeUnit>().Add(new Domain.RentTimeUnit() { Name = name });
+                unitOfWork.SaveChanges();
             }
             return RedirectToAction("Index");
         }
@@ -50,7 +51,8 @@ namespace GCRS.Web.Controllers
         // GET: Nomenclador/Delete/5
         public ActionResult Delete(int id)
         {
-            _rentTimeUnitRepo.RemoveRentTimeUnit(id);
+            unitOfWork.Repository<RentTimeUnit>().Remove(unitOfWork.Repository<RentTimeUnit>().SingleOrDefault(r => r.Id == id));
+            unitOfWork.SaveChanges();
             return RedirectToAction("Index");
         }
     }

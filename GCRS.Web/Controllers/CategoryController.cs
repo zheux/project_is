@@ -9,17 +9,17 @@ namespace GCRS.Web.Controllers
 {
     public class CategoryController : Controller
     {
-        private ICategoryRepository _categoryRepo;
+        private IUnitOfWork unitOfWork;
         
-        public CategoryController(ICategoryRepository CategoryRepository)
+        public CategoryController(IUnitOfWork UnitOfWork)
         {
-            _categoryRepo = CategoryRepository;
+            unitOfWork = UnitOfWork;
         }
 
         // GET: Category
         public ActionResult Index()
         {
-            return View(_categoryRepo.GetCategories());
+            return View(unitOfWork.Repository<Category>().ToList());
         }
 
 
@@ -41,7 +41,8 @@ namespace GCRS.Web.Controllers
             }
             else
             {
-                _categoryRepo.AddCategory(new Domain.Category() { Name = name });
+                unitOfWork.Repository<Category>().Add(new Domain.Category() { Name = name });
+                unitOfWork.SaveChanges();
             }
             return RedirectToAction("Index");
         }
@@ -50,7 +51,8 @@ namespace GCRS.Web.Controllers
         // GET: Category/Delete/5
         public ActionResult Delete(int id)
         {
-            _categoryRepo.RemoveCategory(id);
+            unitOfWork.Repository<Category>().Remove(unitOfWork.Repository<Category>().SingleOrDefault(c => c.Id == id));
+            unitOfWork.SaveChanges();
             return RedirectToAction("Index");
         }
     }

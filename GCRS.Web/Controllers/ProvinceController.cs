@@ -10,17 +10,17 @@ namespace GCRS.Web.Controllers
 
     public class ProvinceController : Controller
     {
-        private IProvinceRepository _provinceRepo;
+        private IUnitOfWork unitOfWork;
         
-        public ProvinceController(IProvinceRepository ProvinceRepository)
+        public ProvinceController(IUnitOfWork UnitOfWork)
         {
-            _provinceRepo = ProvinceRepository;
+            unitOfWork = UnitOfWork;
         }
 
         // GET: Provincias
         public ActionResult Index()
         {
-            return View(_provinceRepo.GetProvinces());
+            return View(unitOfWork.Repository<Province>().ToList());
         }
 
         // GET: Nomenclador/AddProvincia
@@ -40,7 +40,8 @@ namespace GCRS.Web.Controllers
             }
             else
             {
-                _provinceRepo.AddProvince(new Domain.Province() { Name = name });
+                unitOfWork.Repository<Province>().Add(new Domain.Province() { Name = name });
+                unitOfWork.SaveChanges();
             }
             return RedirectToAction("Index");
         }
@@ -49,7 +50,8 @@ namespace GCRS.Web.Controllers
         // GET: Nomenclador/Delete/5
         public ActionResult Delete(int id)
         {
-            _provinceRepo.RemoveProvince(id);
+            unitOfWork.Repository<Province>().Remove(unitOfWork.Repository<Province>().SingleOrDefault(p => p.Id == id));
+            unitOfWork.SaveChanges();
             return RedirectToAction("Index");
         }
     }

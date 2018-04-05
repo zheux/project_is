@@ -4,26 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GCRS.Domain;
-using GCRS.Data.Repositories;
+using GCRS.Data;
 
 namespace GCRS.Services
 {
     public class SearchService
     {
-        private RentalOfferRepository _rentalOfferRepo;
-        private SellOfferRepository _sellOfferRepo;
-        private ReservationRepository _reservationRepository;
-        private PurchaseRepository _purchaseRepository;
+        private IUnitOfWork unitOfWork;
 
         public SearchService()
         {
-            _rentalOfferRepo = new RentalOfferRepository();
-            _sellOfferRepo = new SellOfferRepository();
-            _reservationRepository = new ReservationRepository();
-            _purchaseRepository = new PurchaseRepository();
+            unitOfWork = new UnitOfWork();
         }
 
-    public IEnumerable<RentalOffer> SearchRentalOffers(ViewModels.RentalSearchFilterVM filters, IList<Tag> TagList)
+        public IEnumerable<RentalOffer> SearchRentalOffers(ViewModels.RentalSearchFilterVM filters, IList<Tag> TagList)
         {
             Func<RentalOffer, bool> cond;
             if (filters != null)
@@ -45,8 +39,8 @@ namespace GCRS.Services
                         ret = false;
                     if (filters.SelectedMunicipality != null && (m.Property.Municipality == null || m.Property.Municipality.Name != filters.SelectedMunicipality))
                         ret = false;
-                    foreach (var reservation in _reservationRepository.GetReservations()
-                        .Where(t => t.RentalOfferId == m.Id))
+                    foreach (var reservation in unitOfWork.Repository<Reservation>()
+                                                    .Where(t => t.RentalOfferId == m.Id))
                     {
                         if (filters.ArrivalDate < reservation.DepartureDate && filters.DepartureDate > reservation.ArrivalDate)
                             ret = false;
@@ -63,12 +57,19 @@ namespace GCRS.Services
             }
             else
                 cond = m => m.Id != -1;
-            return _rentalOfferRepo.GetOffers()
+            return unitOfWork.Repository<RentalOffer>()
+                    .Include("RTU")
+                    .Include("Property")
+                    .Include("Property.Category")
+                    .Include("Property.District")
+                    .Include("Property.Municipality")
+                    .Include("Property.Province")
+                    .Include("Tags")
                     .Where(m => m.State == OfferState.Published)
                     .Where(cond)
                     .ToList();
         }
-
+        
         public IEnumerable<SellOffer> SearchSellOffers(ViewModels.SellSearchFilterVM filters, IList<Tag> TagList)
         {
             Func<SellOffer, bool> cond;
@@ -101,7 +102,13 @@ namespace GCRS.Services
             }
             else
                 cond = m => m.Id != -1;
-            return _sellOfferRepo.GetOffers()
+            return unitOfWork.Repository<SellOffer>()
+                    .Include("Property")
+                    .Include("Property.Category")
+                    .Include("Property.District")
+                    .Include("Property.Municipality")
+                    .Include("Property.Province")
+                    .Include("Tags")
                     .Where(m => m.State == OfferState.Published)
                     .Where(cond)
                     .ToList();
