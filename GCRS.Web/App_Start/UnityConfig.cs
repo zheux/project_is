@@ -31,6 +31,8 @@ namespace GCRS.Web
             container.RegisterType<IRentTimeUnitRepository, RentTimeUnitRepository>();
             container.RegisterType<ITagRepository, TagRepository>();
             container.RegisterType<IPropertyRepository, PropertyRepository>();
+            container.RegisterType < IOfferRepository<SellOffer>, SellOfferRepository>();
+            container.RegisterType<IOfferRepository<RentalOffer>, RentalOfferRepository>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

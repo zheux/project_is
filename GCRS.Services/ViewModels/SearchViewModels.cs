@@ -61,7 +61,7 @@ namespace GCRS.Services.ViewModels
 
         public IEnumerable<GCRS.Domain.SellOffer> FilteredSells;
 
-        public IEnumerable<GCRS.Domain.Province> Provinces;
+        public IEnumerable<GCRS.Domain.Province> Provinces;     
         public IEnumerable<GCRS.Domain.Municipality> Municipalities;
         public IEnumerable<GCRS.Domain.District> Districts;
         public IEnumerable<GCRS.Domain.Category> Categories;

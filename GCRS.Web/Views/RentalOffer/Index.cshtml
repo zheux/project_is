@@ -1,0 +1,51 @@
+﻿@model IEnumerable<GCRS.Domain.SellOffer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Properties</h2>
+@Html.ActionLink("Add", "AddProperty")
+<br />
+<table class="table">
+    @*Listar Properties*@
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Address</th>
+            <th>Province</th>
+            <th>Municipality</th>
+            <th>District</th>
+            <th>RoomsCounts</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.Encode(item.Id)
+            </td>
+            <td>
+                @Html.Encode(item.)
+            </td>
+            <td>
+                @Html.Encode(item.Province)
+            </td>
+            <td>
+                @Html.Encode(item.Municipality)
+            </td>
+            <td>
+                @Html.Encode(item.District)
+            </td>
+            <td>
+                @Html.Encode(item.RoomsCount)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

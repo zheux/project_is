@@ -84,7 +84,7 @@ namespace GCRS.Data.Migrations
                 Description = "Descripcion del hostal",
                 PricePerRTU = 80,
                 RTU = context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche"),
-                Property = testProp,
+                PropertyId = testProp.Id,
                 State = State.Published
             };
 
@@ -94,7 +94,7 @@ namespace GCRS.Data.Migrations
                 Description = "Descripcion del apartamento",
                 PricePerRTU = 50,
                 RTU = context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche"),
-                Property = testProp,
+                PropertyId = testProp.Id,
                 State = State.Published
             };
 
@@ -104,7 +104,7 @@ namespace GCRS.Data.Migrations
                 Description = "Descripcion del alquiler",
                 PricePerRTU = 120,
                 RTU = context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche"),
-                Property = testProp2,
+                PropertyId = testProp2.Id,
                 State = State.Published
             };
 
@@ -114,14 +114,18 @@ namespace GCRS.Data.Migrations
                 Description = "Descripcion de la casa",
                 PricePerRTU = 160,
                 RTU = context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche"),
-                Property = testProp2,
+                PropertyId = testProp2.Id,
                 State = State.Published
             };
 
-            context.RentalOffers.Add(o);
-            context.RentalOffers.Add(p);
-            context.RentalOffers.Add(q);
-            context.RentalOffers.Add(r);
+            if(context.RentalOffers.SingleOrDefault(m => m.Title == "Hostal Clara") == null)
+                context.RentalOffers.Add(o);
+            if(context.RentalOffers.SingleOrDefault(m => m.Title == "Apartamento") == null)
+                context.RentalOffers.Add(p);
+            if(context.RentalOffers.SingleOrDefault(m => m.Title == "Alquiler Suite Romantic Matanzas") == null)
+                context.RentalOffers.Add(q);
+            if (context.RentalOffers.SingleOrDefault(m => m.Title == "Casa independiente") == null)
+                context.RentalOffers.Add(r);
 
             context.SaveChanges();
 
@@ -181,7 +185,7 @@ namespace GCRS.Data.Migrations
                 Title = "Casa",
                 Description = "Descripcion de la casa",
                 Price = 20000,
-                Property = testProp2,
+                PropertyId = testProp2.Id,
                 State = State.Published
             });
 
