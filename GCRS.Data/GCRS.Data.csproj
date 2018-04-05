@@ -49,27 +49,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201804051641554_lllll.cs" />
-    <Compile Include="Migrations\201804051641554_lllll.Designer.cs">
-      <DependentUpon>201804051641554_lllll.cs</DependentUpon>
+    <Compile Include="Migrations\201804051732156_llllllll.cs" />
+    <Compile Include="Migrations\201804051732156_llllllll.Designer.cs">
+      <DependentUpon>201804051732156_llllllll.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Offers\OfferRequestRepository.cs" />
-    <Compile Include="Repositories\ValueObjects\PropertyRepository.cs" />
-    <Compile Include="Repositories\Offers\RentalOfferRepository.cs" />
-    <Compile Include="Repositories\Offers\PurchaseRepository.cs" />
-    <Compile Include="Repositories\Offers\SellOfferRepository.cs" />
-    <Compile Include="Repositories\Offers\ReservationRepository.cs" />
-    <Compile Include="Repositories\ValueObjects\TagRepository.cs" />
-    <Compile Include="Repositories\User\AdminRepository.cs" />
-    <Compile Include="Repositories\User\AgentRepository.cs" />
-    <Compile Include="Repositories\User\ClientRepository.cs" />
-    <Compile Include="Repositories\ValueObjects\CategoryRepository.cs" />
-    <Compile Include="Repositories\ValueObjects\DistrictRepository.cs" />
-    <Compile Include="Repositories\ValueObjects\MunicipalityRepository.cs" />
-    <Compile Include="Repositories\ValueObjects\ProvinceRepository.cs" />
-    <Compile Include="Repositories\ValueObjects\RentTimeUnitRepository.cs" />
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GCRS.Domain\GCRS.Domain.csproj">
@@ -84,8 +70,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804051641554_lllll.resx">
-      <DependentUpon>201804051641554_lllll.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804051732156_llllllll.resx">
+      <DependentUpon>201804051732156_llllllll.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

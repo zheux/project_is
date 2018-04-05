@@ -5,32 +5,23 @@ using System.Web;
 using System.Web.Mvc;
 using GCRS.Domain;
 using GCRS.Web.ViewModels;
+using GCRS.Data;
 
 namespace GCRS.Web.Controllers
 {
     public class PropertyController : Controller
     {
-        private IProvinceRepository _provinceRepo;
-        private IMunicipalityRepository _municipalityRepo;
-        private IDistrictRepository _districtRepo;
-        private ICategoryRepository _categoryRepo;
-        private IPropertyRepository _PropertyRepo;
+        private UnitOfWork unitOfWork;
         
-        public PropertyController(IPropertyRepository PropertyRepository, IProvinceRepository provinceRepo, 
-            IMunicipalityRepository municipalityRepo, IDistrictRepository districtRepo, ICategoryRepository categoryRepo)
+        public PropertyController()
         {
-            _PropertyRepo = PropertyRepository;
-            _provinceRepo = provinceRepo;
-            _municipalityRepo = municipalityRepo;
-            _districtRepo = districtRepo;
-            _categoryRepo = categoryRepo;
-
+            unitOfWork = new UnitOfWork();
         }
 
         // GET: Properties
         public ActionResult Index()
         {
-            return View(_PropertyRepo.GetProperties());
+            return View(unitOfWork.Repository<Property>().ToList());
         }
 
 
@@ -40,10 +31,10 @@ namespace GCRS.Web.Controllers
         {
             return View(new PropertyViewModels {
                 Property = new Property(),
-                Categories = _categoryRepo.GetCategories(),
-                Districts = _districtRepo.GetDistricts(),
-                Municipalities = _municipalityRepo.GetMunicipalities(),
-                Provinces = _provinceRepo.GetProvinces()
+                Categories = unitOfWork.Repository<Category>().ToList(),
+                Districts = unitOfWork.Repository<District>().ToList(),
+                Municipalities = unitOfWork.Repository<Municipality>().ToList(),
+                Provinces = unitOfWork.Repository<Province>().ToList()
             });
         }
 
@@ -64,21 +55,23 @@ namespace GCRS.Web.Controllers
                 return View(new PropertyViewModels
                 {
                     Property = new Property(),
-                    Categories = _categoryRepo.GetCategories(),
-                    Districts = _districtRepo.GetDistricts(),
-                    Municipalities = _municipalityRepo.GetMunicipalities(),
-                    Provinces = _provinceRepo.GetProvinces()
+                    Categories = unitOfWork.Repository<Category>().ToList(),
+                    Districts = unitOfWork.Repository<District>().ToList(),
+                    Municipalities = unitOfWork.Repository<Municipality>().ToList(),
+                    Provinces = unitOfWork.Repository<Province>().ToList()
                 });
 
-            _PropertyRepo.AddProperty(new Domain.Property()
+            unitOfWork.Repository<Property>().Add(new Domain.Property()
             {
                 Direccion = Property.Direccion,
-                ProvinceId = _provinceRepo.FindProvince(x => x.Name == Property.Province.Name).Id,
-                MunicipalityId = _municipalityRepo.FindMunicipality(x => x.Name == Property.Municipality.Name).Id,
-                DistrictId = _districtRepo.FindDistrict(x => x.Name == Property.District.Name).Id,
-                CategoryId = _categoryRepo.FindCategory(x => x.Name == Property.Category.Name).Id,
+                ProvinceId = unitOfWork.Repository<Province>().SingleOrDefault(x => x.Name == Property.Province.Name).Id,
+                MunicipalityId = unitOfWork.Repository<Municipality>().SingleOrDefault(x => x.Name == Property.Municipality.Name).Id,
+                DistrictId = unitOfWork.Repository<District>().SingleOrDefault(x => x.Name == Property.District.Name).Id,
+                CategoryId = unitOfWork.Repository<Category>().SingleOrDefault(x => x.Name == Property.Category.Name).Id,
                 RoomsCount = Property.RoomsCount,
-                InfoAdicional = Property.InfoAdicional});
+                InfoAdicional = Property.InfoAdicional
+            });
+            unitOfWork.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -86,7 +79,8 @@ namespace GCRS.Web.Controllers
         // GET: /Delete/Property
         public ActionResult Delete(int id)
         {
-            _PropertyRepo.RemoveProperty(id);
+            unitOfWork.Repository<Property>().Remove(unitOfWork.Repository<Property>().SingleOrDefault(m => m.Id == id));
+            unitOfWork.SaveChanges();
             return RedirectToAction("Index");
         }
     }

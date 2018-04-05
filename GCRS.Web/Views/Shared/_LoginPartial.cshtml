@@ -3,17 +3,17 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
+            <li class="dropdown" style="background-color: #f5f5f5">
                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="/Manage" title="Manage">
                     <span class="fa fa-user-circle navbar-icon" aria-hidden="true"></span><span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li>@Html.Label(User.Identity.Name, new { @style = "font-weight: bold", @class = "dropdown-item" })</li>
                     <li class="dropdown-divider"></li>
-                    <li>@Html.ActionLink("Ajustes", "Index", "Manage", null, new { @class = "dropdown-item" })</li>
-                    <li class="dropdown-divider"></li>
+                    <li>@Html.ActionLink("Ajustes", "Profile", "Account", null, new { @class = "dropdown-item" })</li>
                     @if (User.IsInRole("admin"))
                     {
+                        <li class="dropdown-divider"></li>
                         <li>@Html.ActionLink("Provincias", "Index", "Province", null, new { @class = "dropdown-item" })</li>
                         <li>@Html.ActionLink("Municipios", "Index", "Municipality", null, new { @class = "dropdown-item" })</li>
                         <li>@Html.ActionLink("Repartos", "Index", "District", null, new { @class = "dropdown-item" })</li>
@@ -25,6 +25,13 @@
                         <li class="nav-item">@Html.ActionLink("Agentes", "Index", "Agent", null, new { @class = "dropdown-item" })</li>
                         <li class="nav-item">@Html.ActionLink("Clientes", "Index", "Client", null, new { @class = "dropdown-item" })</li>
                     }
+                    else if (User.IsInRole("agent"))
+                    {
+                        <li class="dropdown-divider"></li>
+                        <li>@Html.ActionLink("Solicitudes", "Index", "OfferRequest", null, new { @class = "dropdown-item" })</li>
+
+                    }
+
                 </ul>
             </li>
             <li class="nav-item"><a class = "nav-link" href="javascript:document.getElementById('logoutForm').submit()">

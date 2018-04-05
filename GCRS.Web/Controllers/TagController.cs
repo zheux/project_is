@@ -4,22 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GCRS.Domain;
+using GCRS.Data;
 
 namespace GCRS.Web.Controllers
 {
     public class TagController : Controller
     {
-        private ITagRepository _tagRepo;
+        private UnitOfWork unitOfWork;
         
-        public TagController(ITagRepository TagRepository)
+        public TagController()
         {
-            _tagRepo = TagRepository;
+            unitOfWork = new UnitOfWork();
         }
 
         // GET: Tags
         public ActionResult Index()
         {
-            return View(_tagRepo.GetTags());
+            return View(unitOfWork.Repository<Tag>().ToList());
         }
 
 
@@ -44,7 +45,7 @@ namespace GCRS.Web.Controllers
                 ModelState.AddModelError("TagType", "Tiene que seleccionar un tipo");
                 return View();
             }
-            _tagRepo.AddTag(new Tag {  Name = Name, Description = Destription, TagType = TagType == "All"? Domain.TagType.All: 
+            unitOfWork.Repository<Tag>().Add(new Tag {  Name = Name, Description = Destription, TagType = TagType == "All"? Domain.TagType.All: 
                 TagType == "Rental"? Domain.TagType.Rental: Domain.TagType.Sell});
             return RedirectToAction("Index");
         }
@@ -53,7 +54,7 @@ namespace GCRS.Web.Controllers
         // GET: Nomenclador/Delete/5
         public ActionResult Delete(int id)
         {
-            _tagRepo.RemoveTag(id);
+            unitOfWork.Repository<Tag>().Remove(unitOfWork.Repository<Tag>().SingleOrDefault(m => m.Id == id));
             return RedirectToAction("Index");
         }
     }

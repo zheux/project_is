@@ -2,49 +2,67 @@
 using System.Collections.Generic;
 using System.Linq;
 using GCRS.Domain;
-using GCRS.Data.Repositories;
+using GCRS.Data;
 
 namespace GCRS.Services
 {
     public class OfferRequestingService
     {
-        private OfferRequestRepository _offerReqRepo;
+        private UnitOfWork unitOfWork;
 
         public OfferRequestingService()
         {
-            _offerReqRepo = new OfferRequestRepository();
+            unitOfWork = new UnitOfWork();
         }
 
         public bool MakeRequest(Client Client)
         {
-            if(_offerReqRepo.GetOfferRequests().SingleOrDefault(o => o.ClientUsername == Client.Username) == null)
+            if(unitOfWork.Repository<OfferRequest>().SingleOrDefault(o => o.ClientUsername == Client.Username) == null)
             {
                 OfferRequest newReq = new OfferRequest()
                 {
                     ClientUsername = Client.Username,
-                    Client = Client,
+                    AgentUsername = "agente",
                     State = RequestState.Requested,
                     RequestedDate = DateTime.Today
                 };
                 //TODO: Asignar un agente a la oferta
+                unitOfWork.Repository<OfferRequest>().Add(newReq);
+                unitOfWork.SaveChanges();
                 return true;
             }
             return false;
         }
 
-        public bool BindRequestToAgent(Agent Agent, OfferRequest Request)
+        public bool BindRequestToAgent(Agent Agent, Client Client)
         {
+            OfferRequest Request = unitOfWork.Repository<OfferRequest>().SingleOrDefault(o => o.ClientUsername == Client.Username);
             if(Request.Agent != null)
             {
                 throw new Exception("The Request already has an Agent");
             }
             Request.AgentUsername = Agent.Username;
-            Request.Agent = Agent;
+            unitOfWork.SaveChanges();
             return true;
         }
 
-        public void CancelOfferRequest(OfferRequest Request)
+        public void AcceptRequest(Agent Agent, Client Client)
         {
+            OfferRequest Request = unitOfWork.Repository<OfferRequest>().SingleOrDefault(o => o.ClientUsername == Client.Username);
+            Request.State = RequestState.Draft;
+            unitOfWork.SaveChanges();
+        }
+
+        public void RemoveRequest(Client Client)
+        {
+            OfferRequest Request = unitOfWork.Repository<OfferRequest>().SingleOrDefault(o => o.ClientUsername == Client.Username);
+            Request.isDeleted = true;
+            unitOfWork.SaveChanges();
+        }
+
+        public void CancelOfferRequest(Client Client)
+        {
+            OfferRequest Request = unitOfWork.Repository<OfferRequest>().SingleOrDefault(o => o.ClientUsername == Client.Username);
             Request.State = RequestState.Canceled;
         }
     }

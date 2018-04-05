@@ -5,34 +5,23 @@ using System.Web;
 using System.Web.Mvc;
 using GCRS.Domain;
 using GCRS.Web.ViewModels;
+using GCRS.Data;
 
 namespace GCRS.Web.Controllers
 {
     public class RentalOfferController : Controller
     {
-        private IAgentRepository _agentRepo;
-        private IClientRepository _clientRepo;
-        private IPropertyRepository _propertyRepo;
-        private ITagRepository _tagRepo;
-        private IRentTimeUnitRepository _rtuRepo;
-        private IOfferRepository<RentalOffer> _RentalOfferRepo;
+        private UnitOfWork unitOfWork;
         
-        public RentalOfferController(IOfferRepository<RentalOffer> RentalOfferRepository, IAgentRepository agentRepo,
-            IClientRepository clientRepo, IPropertyRepository propertyRepo, ITagRepository tagRepo, IRentTimeUnitRepository rtuRepo)
+        public RentalOfferController()
         {
-            _RentalOfferRepo = RentalOfferRepository;
-            _agentRepo = agentRepo;
-            _clientRepo = clientRepo;
-            _propertyRepo = propertyRepo;
-            _tagRepo = tagRepo;
-            _rtuRepo = rtuRepo;
-
+            unitOfWork = new UnitOfWork();
         }
 
         // GET: Properties
         public ActionResult Index()
         {
-            return View(_RentalOfferRepo.GetOffers());
+            return View(unitOfWork.Repository<RentalOffer>().ToList());
         }
 
 
@@ -42,11 +31,11 @@ namespace GCRS.Web.Controllers
         {
             return View(new RentalOfferViewModels {
                 Offer = new RentalOffer(),
-                Agents = _agentRepo.GetAgents(),
-                Clients = _clientRepo.GetClients(),
-                Properties = _propertyRepo.GetProperties(),
-                Tags = _tagRepo.GetTags(),
-                RTU = _rtuRepo.GetRentTimeUnits()
+                Agents = unitOfWork.Repository<Agent>().ToList(),
+                Clients = unitOfWork.Repository<Client>().ToList(),
+                Properties = unitOfWork.Repository<Property>().ToList(),
+                Tags = unitOfWork.Repository<Tag>().ToList(),
+                RTU = unitOfWork.Repository<RentTimeUnit>().ToList()
             });
         }
 
@@ -65,16 +54,18 @@ namespace GCRS.Web.Controllers
                 return View(new RentalOfferViewModels
                 {
                     Offer = new RentalOffer(),
-                    Agents = _agentRepo.GetAgents(),
-                    Clients = _clientRepo.GetClients(),
-                    Properties = _propertyRepo.GetProperties(),
-                    Tags = _tagRepo.GetTags(),
-                    RTU = _rtuRepo.GetRentTimeUnits()
+                    Agents = unitOfWork.Repository<Agent>().ToList(),
+                    Clients = unitOfWork.Repository<Client>().ToList(),
+                    Properties = unitOfWork.Repository<Property>().ToList(),
+                    Tags = unitOfWork.Repository<Tag>().ToList(),
+                    RTU = unitOfWork.Repository<RentTimeUnit>().ToList()
                 });
 
-            _RentalOfferRepo.AddOffer(new Domain.RentalOffer() { Agent = Offer.Agent, Tags = Offer.Tags, PropertyId = Offer.PropertyId,
+
+            unitOfWork.Repository<RentalOffer>().Add(new Domain.RentalOffer() { Agent = Offer.Agent, Tags = Offer.Tags, PropertyId = Offer.PropertyId,
                                 ClientUserName = Offer.ClientUserName, Comission = 100, Description = Offer.Description, PricePerRTU = Offer.PricePerRTU,
-                                State = OfferState.Published, Title = Offer.Title, RTU = _rtuRepo.FindRentTimeUnit(m => m.Name == "Noche")});
+                                State = OfferState.Published, Title = Offer.Title, RTU = unitOfWork.Repository<RentTimeUnit>().SingleOrDefault(m => m.Name == "Noche")});
+            unitOfWork.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -82,7 +73,9 @@ namespace GCRS.Web.Controllers
         // GET: /Delete/RentalOffer
         public ActionResult Delete(int id)
         {
-            _RentalOfferRepo.RemoveOffer(id);
+            
+            unitOfWork.Repository<RentalOffer>().Remove(unitOfWork.Repository<RentalOffer>().SingleOrDefault(m => m.Id == id));
+            unitOfWork.SaveChanges();
             return RedirectToAction("Index");
         }
     }

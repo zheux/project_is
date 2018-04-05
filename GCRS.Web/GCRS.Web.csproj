@@ -247,10 +247,11 @@
     <Content Include="Views\SellOffer\AddSellOffer.cshtml" />
     <Content Include="Views\RentalOffer\AddRentalOffer.cshtml" />
     <Content Include="Views\RentalOffer\Index.cshtml" />
+    <Content Include="Views\OfferRequest\CreateRequest.cshtml" />
+    <Content Include="Views\OfferRequest\Index.cshtml" />
+    <Content Include="Views\Shared\_UserTitlePartial.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\OfferRequest\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include="App_Data\Cuba\cuba-latest.osm.pbf" />
@@ -362,6 +363,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\app.ts" />
+    <TypeScriptCompile Include="src\offerRequest\createRequest.ts" />
     <TypeScriptCompile Include="src\home\about.ts" />
     <TypeScriptCompile Include="src\home\home.ts" />
     <TypeScriptCompile Include="src\shared\chart-viewer.ts" />

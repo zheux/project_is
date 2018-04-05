@@ -12,20 +12,12 @@ namespace GCRS.Web.Controllers
 {
     public class SearchController : Controller
     {
-        private IProvinceRepository _provinceRepo;
-        private IMunicipalityRepository _municipalityRepo;
-        private IDistrictRepository _districtRepo;
-        private ICategoryRepository _categoryRepo;
-        private ITagRepository _tagRepo;
+        private IUnitOfWork unitOfWork;
         private SearchService _searchService;
 
-        public SearchController(IProvinceRepository provinceRepo, IMunicipalityRepository municipalityRepo, IDistrictRepository districtRepo, ICategoryRepository categoryRepo, ITagRepository tagRepo)
+        public SearchController(IUnitOfWork UnitOfWork)
         {
-            _provinceRepo = provinceRepo;
-            _municipalityRepo = municipalityRepo;
-            _districtRepo = districtRepo;
-            _categoryRepo = categoryRepo;
-            _tagRepo = tagRepo;
+            unitOfWork = UnitOfWork;
             _searchService = new SearchService();
         }
 
@@ -33,12 +25,12 @@ namespace GCRS.Web.Controllers
         public ActionResult Rental()
         {
             return View(new RentalSearchVM() {
-                FilteredRentals = _searchService.SearchRentalOffers(null, _tagRepo.GetTags().ToList()),
-                Provinces = _provinceRepo.GetProvinces(),
-                Municipalities = _municipalityRepo.GetMunicipalities(),
-                Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories(),
-                Tags = _tagRepo.GetTags()
+                FilteredRentals = _searchService.SearchRentalOffers(null, unitOfWork.Repository<Tag>().ToList()),
+                Provinces = unitOfWork.Repository<Province>().ToList(),
+                Municipalities = unitOfWork.Repository<Municipality>().ToList(),
+                Districts = unitOfWork.Repository<District>().ToList(),
+                Categories = unitOfWork.Repository<Category>().ToList(),
+                Tags = unitOfWork.Repository<Tag>().ToList()
             });
         }
 
@@ -48,12 +40,12 @@ namespace GCRS.Web.Controllers
         {
             return View(new RentalSearchVM()
             {
-                FilteredRentals = _searchService.SearchRentalOffers(filters, _tagRepo.GetTags().ToList()),
-                Provinces = _provinceRepo.GetProvinces(),
-                Municipalities = _municipalityRepo.GetMunicipalities(),
-                Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories(),
-                Tags = _tagRepo.GetTags()
+                FilteredRentals = _searchService.SearchRentalOffers(filters, unitOfWork.Repository<Tag>().ToList()),
+                Provinces = unitOfWork.Repository<Province>().ToList(),
+                Municipalities = unitOfWork.Repository<Municipality>().ToList(),
+                Districts = unitOfWork.Repository<District>().ToList(),
+                Categories = unitOfWork.Repository<Category>().ToList(),
+                Tags = unitOfWork.Repository<Tag>().ToList()
             });
         }
 
@@ -62,12 +54,12 @@ namespace GCRS.Web.Controllers
         {
             return View(new SellSearchVM()
             {
-                FilteredSells = _searchService.SearchSellOffers(null, _tagRepo.GetTags().ToList()),
-                Provinces = _provinceRepo.GetProvinces(),
-                Municipalities = _municipalityRepo.GetMunicipalities(),
-                Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories(),
-                Tags = _tagRepo.GetTags()
+                FilteredSells = _searchService.SearchSellOffers(null, unitOfWork.Repository<Tag>().ToList()),
+                Provinces = unitOfWork.Repository<Province>().ToList(),
+                Municipalities = unitOfWork.Repository<Municipality>().ToList(),
+                Districts = unitOfWork.Repository<District>().ToList(),
+                Categories = unitOfWork.Repository<Category>().ToList(),
+                Tags = unitOfWork.Repository<Tag>().ToList()
             });
         }
 
@@ -77,12 +69,12 @@ namespace GCRS.Web.Controllers
         {
             return View(new SellSearchVM()
             {
-                FilteredSells = _searchService.SearchSellOffers(filters, _tagRepo.GetTags().ToList()),
-                Provinces = _provinceRepo.GetProvinces(),
-                Municipalities = _municipalityRepo.GetMunicipalities(),
-                Districts = _districtRepo.GetDistricts(),
-                Categories = _categoryRepo.GetCategories(),
-                Tags = _tagRepo.GetTags()
+                FilteredSells = _searchService.SearchSellOffers(filters, unitOfWork.Repository<Tag>().ToList()),
+                Provinces = unitOfWork.Repository<Province>().ToList(),
+                Municipalities = unitOfWork.Repository<Municipality>().ToList(),
+                Districts = unitOfWork.Repository<District>().ToList(),
+                Categories = unitOfWork.Repository<Category>().ToList(),
+                Tags = unitOfWork.Repository<Tag>().ToList()
             });
         }
     }

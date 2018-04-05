@@ -1,0 +1,19 @@
+﻿<div class="profile-usertitle">
+    <div class="profile-usertitle-name">
+        @HttpContext.Current.User.Identity.Name
+    </div>
+    <div class="profile-usertitle-role">
+        @if (HttpContext.Current.User.IsInRole("admin"))
+        {
+            @:ADMINISTRADOR
+                }
+        else if (HttpContext.Current.User.IsInRole("agent"))
+        {
+            @:AGENTE
+                }
+        else
+        {
+            @:CLIENTE
+                }
+    </div>
+</div>

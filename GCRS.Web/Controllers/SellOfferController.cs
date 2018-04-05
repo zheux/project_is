@@ -5,32 +5,23 @@ using System.Web;
 using System.Web.Mvc;
 using GCRS.Domain;
 using GCRS.Web.ViewModels;
+using GCRS.Data;
 
 namespace GCRS.Web.Controllers
 {
     public class SellOfferController : Controller
     {
-        private IAgentRepository _agentRepo;
-        private IClientRepository _clientRepo;
-        private IPropertyRepository _propertyRepo;
-        private ITagRepository _tagRepo;
-        private IOfferRepository<SellOffer> _SellOfferRepo;
-        
-        public SellOfferController(IOfferRepository<SellOffer> SellOfferRepository, IAgentRepository agentRepo,
-            IClientRepository clientRepo, IPropertyRepository propertyRepo, ITagRepository tagRepo)
-        {
-            _SellOfferRepo = SellOfferRepository;
-            _agentRepo = agentRepo;
-            _clientRepo = clientRepo;
-            _propertyRepo = propertyRepo;
-            _tagRepo = tagRepo;
+        private UnitOfWork unitOfWork;
 
+        public SellOfferController()
+        {
+            unitOfWork = new UnitOfWork();
         }
 
         // GET: Properties
         public ActionResult Index()
         {
-            return View(_SellOfferRepo.GetOffers());
+            return View(unitOfWork.Repository<SellOffer>().ToList());
         }
 
 
@@ -38,12 +29,13 @@ namespace GCRS.Web.Controllers
         // GET: AddSellOffer
         public ActionResult AddSellOffer()
         {
-            return View(new SellOfferViewModels {
+            return View(new SellOfferViewModels
+            {
                 Offer = new SellOffer(),
-                Agents = _agentRepo.GetAgents(),
-                Clients = _clientRepo.GetClients(),
-                Properties = _propertyRepo.GetProperties(),
-                Tags = _tagRepo.GetTags()
+                Agents = unitOfWork.Repository<Agent>().ToList(),
+                Clients = unitOfWork.Repository<Client>().ToList(),
+                Properties = unitOfWork.Repository<Property>().ToList(),
+                Tags = unitOfWork.Repository<Tag>().ToList()
             });
         }
 
@@ -62,15 +54,26 @@ namespace GCRS.Web.Controllers
                 return View(new SellOfferViewModels
                 {
                     Offer = new SellOffer(),
-                    Agents = _agentRepo.GetAgents(),
-                    Clients = _clientRepo.GetClients(),
-                    Properties = _propertyRepo.GetProperties(),
-                    Tags = _tagRepo.GetTags()
+                    Agents = unitOfWork.Repository<Agent>().ToList(),
+                    Clients = unitOfWork.Repository<Client>().ToList(),
+                    Properties = unitOfWork.Repository<Property>().ToList(),
+                    Tags = unitOfWork.Repository<Tag>().ToList()
                 });
 
-            _SellOfferRepo.AddOffer(new Domain.SellOffer() { Agent = Offer.Agent, Tags = Offer.Tags, PropertyId = Offer.PropertyId,
-                                ClientUserName = Offer.ClientUserName, Comission = 100, Description = Offer.Description, Price = Offer.Price,
-                                State = OfferState.Published, Title = Offer.Title});
+
+            unitOfWork.Repository<SellOffer>().Add(new Domain.SellOffer()
+            {
+                Agent = Offer.Agent,
+                Tags = Offer.Tags,
+                PropertyId = Offer.PropertyId,
+                ClientUserName = Offer.ClientUserName,
+                Comission = 100,
+                Description = Offer.Description,
+                Price = Offer.Price,
+                State = OfferState.Published,
+                Title = Offer.Title
+            });
+            unitOfWork.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -78,7 +81,9 @@ namespace GCRS.Web.Controllers
         // GET: /Delete/SellOffer
         public ActionResult Delete(int id)
         {
-            _SellOfferRepo.RemoveOffer(id);
+
+            unitOfWork.Repository<SellOffer>().Remove(unitOfWork.Repository<SellOffer>().SingleOrDefault(m => m.Id == id));
+            unitOfWork.SaveChanges();
             return RedirectToAction("Index");
         }
     }

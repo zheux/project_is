@@ -53,9 +53,9 @@ namespace GCRS.Services.ViewModels
 
         public string SelectedCategory { get; set; }
 
-        public int MinimumPrice { get; set; }
+        public int? MinimumPrice { get; set; }
 
-        public int MaximumPrice { get; set; }
+        public int? MaximumPrice { get; set; }
 
         public IList<bool> SelectedTag { get; set; }
     }

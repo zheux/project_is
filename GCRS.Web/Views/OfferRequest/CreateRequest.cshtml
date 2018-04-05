@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "CreateRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Publicar un anuncio</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+       <h6>Localice su propiedad:</h6>
+        <br />
+        <div class="card">
+            <div id="map-viewer" class="card-img-top"></div>
+        </div>
+        <br />
+        <br />
+
+        <h6> Para publicar su inmueble en nuestro sitio, nuestros agentes verificaran la informacion de su propiedad,
+        y posteriormente contactaran directamente a usted mediante la informacion de contacto de su perfil para 
+        precisar los detalles del anuncio.</h6>
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Solicitar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
