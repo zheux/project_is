@@ -12,7 +12,7 @@ body {
 
 .body-content {
     margin-top: 4rem;
-    margin-left: 3%;
+    margin-left: 6.5%;
     margin-right: 3%;
 }
 
@@ -228,6 +228,7 @@ label.tag-chkbox {
 .profile-sidebar {
     padding: 1.2rem 0 .8rem 0;
     background: rgba(170, 184, 196, 0.26);
+    margin-left: -2rem;
 }
 
 .profile-usertitle {
