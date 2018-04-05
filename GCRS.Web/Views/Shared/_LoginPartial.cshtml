@@ -3,17 +3,17 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
+            <li class="dropdown" style="background-color: #f5f5f5">
                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="/Manage" title="Manage">
                     <span class="fa fa-user-circle navbar-icon" aria-hidden="true"></span><span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li>@Html.Label(User.Identity.Name, new { @style = "font-weight: bold", @class = "dropdown-item" })</li>
                     <li class="dropdown-divider"></li>
-                    <li>@Html.ActionLink("Ajustes", "Index", "Manage", null, new { @class = "dropdown-item" })</li>
-                    <li class="dropdown-divider"></li>
+                    <li>@Html.ActionLink("Ajustes", "Profile", "Account", null, new { @class = "dropdown-item" })</li>
                     @if (User.IsInRole("admin"))
                     {
+                        <li class="dropdown-divider"></li>
                         <li>@Html.ActionLink("Provincias", "Index", "Province", null, new { @class = "dropdown-item" })</li>
                         <li>@Html.ActionLink("Municipios", "Index", "Municipality", null, new { @class = "dropdown-item" })</li>
                         <li>@Html.ActionLink("Repartos", "Index", "District", null, new { @class = "dropdown-item" })</li>
