@@ -46,7 +46,11 @@ namespace GCRS.Data.Repositories
         {
             using (var context = new ApplicationDbContext())
             {
-                return context.Properties.ToList();
+                return context.Properties.Include("Category")
+                                         .Include("Province")
+                                         .Include("District")
+                                         .Include("Municipality")
+                                         .ToList();
             }
         }
     }
