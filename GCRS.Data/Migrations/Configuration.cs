@@ -30,11 +30,15 @@ namespace GCRS.Data.Migrations
                 context.Provinces.AddOrUpdate(new Province() { Name = "La Habana" });
             if (context.Provinces.SingleOrDefault(m => m.Name == "Matanzas") == null)
                 context.Provinces.AddOrUpdate(new Province() { Name = "Matanzas" });
+            if (context.Municipalities.SingleOrDefault(m => m.Name == "Playa") == null)
+                context.Municipalities.AddOrUpdate(new Municipality() { Name = "Playa" });
             if (context.Municipalities.SingleOrDefault(m => m.Name == "Vedado") == null)
                 context.Municipalities.AddOrUpdate(new Municipality() { Name = "Vedado" });
-            if(context.Districts.SingleOrDefault(m => m.Name == "Nuevo Vedado") == null)
+            if (context.Districts.SingleOrDefault(m => m.Name == "Nuevo Vedado") == null)
                     context.Districts.AddOrUpdate(new District() { Name = "Nuevo Vedado" });
-            if(context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche") == null)
+            if (context.Districts.SingleOrDefault(m => m.Name == "Almendares") == null)
+                context.Districts.AddOrUpdate(new District() { Name = "Almendares" });
+            if (context.RentTimeUnits.SingleOrDefault(m => m.Name == "Noche") == null)
                 context.RentTimeUnits.AddOrUpdate(new RentTimeUnit() { Name = "Noche" });
 
             context.SaveChanges();
@@ -53,18 +57,20 @@ namespace GCRS.Data.Migrations
             Property testProp = new Property()
             {
                 Direccion = "23 entre 20 y 22",
-                Category = context.Categories.SingleOrDefault(m => m.Name == "Simple"),
-                Province = context.Provinces.SingleOrDefault(m => m.Name == "La Habana"),
-                Municipality = context.Municipalities.SingleOrDefault(m => m.Name == "Vedado"),
-                District = context.Districts.SingleOrDefault(m => m.Name == "Nuevo Vedado"),
+                CategoryId = context.Categories.SingleOrDefault(m => m.Name == "Simple").Id,
+                ProvinceId = context.Provinces.SingleOrDefault(m => m.Name == "La Habana").Id,
+                MunicipalityId = context.Municipalities.SingleOrDefault(m => m.Name == "Vedado").Id,
+                DistrictId = context.Districts.SingleOrDefault(m => m.Name == "Nuevo Vedado").Id,
                 RoomsCount = 1
             };
 
             Property testProp2 = new Property()
             {
-                Direccion = "Matanzas",
-                Category = context.Categories.SingleOrDefault(m => m.Name == "Suite"),
-                Province = context.Provinces.SingleOrDefault(m => m.Name == "Matanzas"),
+                Direccion = "21 entre 56 y 58",
+                CategoryId = context.Categories.SingleOrDefault(m => m.Name == "Suite").Id,
+                ProvinceId = context.Provinces.SingleOrDefault(m => m.Name == "La Habana").Id,
+                MunicipalityId = context.Municipalities.SingleOrDefault(m => m.Name == "Playa").Id,
+                DistrictId = context.Districts.SingleOrDefault(m => m.Name == "Almendares").Id,
                 RoomsCount = 1
             };
 
