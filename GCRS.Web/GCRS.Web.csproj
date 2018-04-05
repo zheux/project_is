@@ -348,6 +348,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\app.ts" />
+    <TypeScriptCompile Include="src\offerRequest\createRequest.ts" />
     <TypeScriptCompile Include="src\home\about.ts" />
     <TypeScriptCompile Include="src\home\home.ts" />
     <TypeScriptCompile Include="src\shared\chart-viewer.ts" />
