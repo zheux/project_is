@@ -22,6 +22,11 @@ namespace GCRS.Domain
 
         public RequestState State { get; set; }
 
+        public double X { get; set; }
+        public double Y { get; set; }
+
         public DateTime RequestedDate { get; set; }
+
+        public bool isDeleted { get; set; }
     }
 }
