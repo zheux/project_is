@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GCRS.Domain;
-using GCRS.Data;
 
 namespace GCRS.Services
 {
@@ -12,13 +11,14 @@ namespace GCRS.Services
     {
         private IUnitOfWork unitOfWork;
 
-        public SearchService()
+        public SearchService(IUnitOfWork UnitOfWork)
         {
-            unitOfWork = new UnitOfWork();
+            unitOfWork = UnitOfWork;
         }
 
         public IEnumerable<RentalOffer> SearchRentalOffers(ViewModels.RentalSearchFilterVM filters, IList<Tag> TagList)
         {
+            List<Reservation> Reservations = unitOfWork.Repository<Reservation>().ToList();
             Func<RentalOffer, bool> cond;
             if (filters != null)
             {
@@ -39,7 +39,7 @@ namespace GCRS.Services
                         ret = false;
                     if (filters.SelectedMunicipality != null && (m.Property.Municipality == null || m.Property.Municipality.Name != filters.SelectedMunicipality))
                         ret = false;
-                    foreach (var reservation in unitOfWork.Repository<Reservation>()
+                    foreach (var reservation in Reservations
                                                     .Where(t => t.RentalOfferId == m.Id))
                     {
                         if (filters.ArrivalDate < reservation.DepartureDate && filters.DepartureDate > reservation.ArrivalDate)

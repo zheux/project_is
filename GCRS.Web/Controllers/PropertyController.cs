@@ -21,7 +21,8 @@ namespace GCRS.Web.Controllers
         // GET: Properties
         public ActionResult Index()
         {
-            return View(unitOfWork.Repository<Property>().ToList());
+            return View(unitOfWork.Repository<Property>().Include("Province").Include("Category").Include("District").Include("Municipality")
+                                                        .ToList());
         }
 
 

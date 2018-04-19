@@ -15,10 +15,10 @@ namespace GCRS.Web.Controllers
         private IUnitOfWork unitOfWork;
         private SearchService _searchService;
 
-        public SearchController(IUnitOfWork UnitOfWork)
+        public SearchController(IUnitOfWork UnitOfWork, SearchService Service)
         {
             unitOfWork = UnitOfWork;
-            _searchService = new SearchService();
+            _searchService = Service;
         }
 
         // GET: Search

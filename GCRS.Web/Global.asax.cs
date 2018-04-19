@@ -30,8 +30,7 @@ namespace GCRS.Web
                         FormsIdentity id =
                             (FormsIdentity)HttpContext.Current.User.Identity;
                         FormsAuthenticationTicket ticket = id.Ticket;
-
-                        //TODO: Determinar el rol del usuario usando el 'modelo' para guardarlo
+                        
                         string[] roles = { "" };
                         var curUser = HttpContext.Current.User.Identity;
 
